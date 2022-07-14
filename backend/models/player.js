@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 
 const player = mongoose.Schema(
     {
-        score: {type: Number},
+        playerId: { type: Number},
+        score: {type: Number},  
         history : [
           {
             type: String,
@@ -13,7 +14,7 @@ const player = mongoose.Schema(
         ]
     },
     {
-        timestamps: true,
+      timestamps: {type: Date,default: Date.now()},
     }
 );
 

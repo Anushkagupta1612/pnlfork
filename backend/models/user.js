@@ -7,23 +7,18 @@
 const mongoose = require('mongoose')
 
 const user = mongoose.Schema(
-    {
-        score: {type: Number},
-        playerId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Player",
-        },
+    { 
+        address: {type: String,required: true,unique: true},
+        score: {type: Number,default:0},
+        playerId: {type: Number},
         history : [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Player",
-            },
+            {type: String},
         ],
-        sell: {type: Boolean},
-        sellAmount : {type: Number},
+        sell: {type: Boolean,default: false},
+        sellAmount : {type: Number,default:0},
     },
     {
-        timestamps: true,
+        timestamps: {type: Date,default: Date.now()},
     }
 )
 

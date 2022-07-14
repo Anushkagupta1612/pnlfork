@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 const auction = mongoose.Schema(
     {
-        address: {type: String,trim: true},
+        address: {type: String,required: true,unique: true},
         playerId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Player",
@@ -14,7 +14,7 @@ const auction = mongoose.Schema(
         bid: {type: Number}
     },
     {
-        timestamps: true,
+        timestamps: {type: Date,default: Date.now()},
     }
 )
 
