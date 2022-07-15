@@ -32,7 +32,7 @@ router.get('/:id', async function (req, res) {
         scores = scores.sort()
         let score1 = profileData[0].score
         let index1 = scores.indexOf(score1)
-        let profileData1 = {...profileData,"leaderboard":index1}
+        let profileData1 = {...profileData,"leaderboard":index1+1}
         res.send(profileData1)
     } catch (error) {
         console.log(error.message)
