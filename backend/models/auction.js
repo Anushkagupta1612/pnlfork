@@ -6,11 +6,8 @@ const mongoose = require('mongoose')
 
 const auction = mongoose.Schema(
     {
-        address: {type: String,required: true,unique: true},
-        playerId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Player",
-        },
+        address: {type: String,required: true,unique: [true,"Address Exists!"]},
+        playerId: { type: Number},
         bid: {type: Number}
     },
     {
