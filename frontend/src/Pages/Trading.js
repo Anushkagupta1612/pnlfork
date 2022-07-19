@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Trading = () => {
   return (
-    <div>
+    <div className="Nav">
       <Navbar />
       Trading
       <Footer />

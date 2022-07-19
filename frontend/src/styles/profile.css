@@ -1,0 +1,208 @@
+.profile-img{
+    max-width: 35vw;
+    margin-top: 30px;
+    max-height: 60vh;
+    margin-left: 30px;
+}
+
+.profile{
+    display: flex;
+    flex-direction: row;
+}
+
+.title1{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 355;
+font-size: 24px;
+line-height: 32px;
+color: #FFFFFF;
+opacity: 0.7;
+margin-top: 8vh;
+}
+
+.title2{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 415;
+    font-size: 80px;
+    line-height: 88px;
+    color: #FFFFFF;
+}
+
+.profile-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+
+.icons-desc{
+    display: flex;
+    flex-direction: row;
+}
+
+.icon1{
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 20px;
+gap: 4px;
+margin-right: 10px;
+width: 81px;
+height: 40px;
+
+background: rgba(255, 255, 255, 0.2);
+border-radius: 100px;
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.subtitle{
+
+font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 360;
+font-size: 18px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: -0.02em;
+color: #FFFFFF;
+flex: none;
+order: 1;
+margin-top: 20px;
+flex-grow: 0;
+}
+
+.icon2{
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 20px;
+gap: 4px;
+
+width: 88px;
+height: 40px;
+margin-right: 10px;
+
+background: rgba(255, 255, 255, 0.2);
+border-radius: 100px;
+flex: none;
+order: 1;
+flex-grow: 0;
+
+}
+
+.icon3{
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 20px;
+gap: 2px;
+
+width: 177px;
+height: 40px;
+
+background: rgba(255, 255, 255, 0.2);
+border-radius: 100px;
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+
+.subtitle5{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 305;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: -0.02em;
+color: #FFFFFF;
+opacity: 0.8;
+margin-right: 20vw;
+}
+
+.sellbut{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 10px 10px;
+gap: 10px;
+
+width: 100px;
+
+background: rgba(255, 255, 255, 0.2);
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+color: #fff;
+}
+
+
+.transaction{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 415;
+font-size: 31px;
+line-height: 40px;
+margin-top: 50px;
+color: #FFFFFF;
+}
+
+.tablehead{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 360;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: -0.02em;
+color: #FFFFFF;
+
+opacity: 0.7;
+}
+
+.profile-info{
+    width: 40vw;
+height: 80px;
+margin-top: 10vh;
+background: rgba(255, 255, 255, 0.2);
+border-radius: 100px;
+display: flex;
+}
+
+.profile-info1{
+    display: flex;
+    justify-content: center;
+
+}
+
+.profile-info2{
+    display: flex;
+    flex-direction: column;
+}
+
+.username{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 315;
+    font-size: 20px;
+    margin-top: 15px;
+    color: #FFFFFF;
+}
+
+.address{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 305;
+    font-size: 16px;
+    margin-left: 15px;
+    color: #FFFFFF;
+    transform: translateY(-15px);
+}

@@ -4,9 +4,11 @@ import Footer from "../components/Footer";
 
 const Leaderboard = () => {
   return (
-    <div>
+    <div className="Nav">
       <Navbar />
-      Leaderboard
+      <div>
+        
+      </div>
       <Footer />
     </div>
   )

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Auction = () => {
   return (
-    <div>
+    <div className="Nav">
       <Navbar />
       Auction
       <Footer />
