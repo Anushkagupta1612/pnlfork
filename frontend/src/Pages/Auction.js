@@ -1,8 +1,14 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from "../components/Footer";
 
 const Auction = () => {
   return (
-    <div>Auction</div>
+    <div>
+      <Navbar />
+      Auction
+      <Footer />
+    </div>
   )
 }
 

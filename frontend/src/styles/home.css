@@ -1,0 +1,225 @@
+.head1{
+    color: #fff;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 415;
+font-size: 80px;
+}
+
+.head2{
+    color: #fff;
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 415;
+font-size: 80px;
+}
+
+.line{
+    border: 1px solid #FFFFFF;
+    width: 200px;
+    height: 0px;
+}
+
+.liendiv{
+    margin-left: 5vw;
+}
+
+.home{
+    align-items: center;
+}
+
+.para{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 305;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    opacity: 0.8;
+    margin-left: 10vw;
+    padding-right: 10vw;
+}
+
+.learn-button{
+    padding: 16px 24px;
+    gap: 10px;
+    height: 56px;
+    background: #FFFFFF;
+    order: 0;
+    flex-grow: 0;
+    margin-left: 60px;
+    margin-top: 30px;
+    margin-right:10px;
+}
+
+.wallet{
+    padding: 16px 24px;
+    gap: 10px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.2);
+    order: 1;
+    flex-grow: 0;
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.button-pos{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 24px;
+}
+
+.txt{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 415;
+    font-size: 80px;
+    line-height: 88px;
+    color: #FFFFFF;
+    opacity: 0.15;
+}
+
+.marquee {
+    white-space: nowrap;
+    -webkit-animation: rightThenLeft 4s linear;
+}
+
+.working{
+    display: flex;
+}
+
+.working-para{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 305;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: -0.02em;
+color: #FFFFFF;
+opacity: 0.8;
+margin-left: 100px;
+}
+
+.working-button{
+    padding: 16px 24px;
+gap: 10px;
+
+width: 159px;
+height: 56px;
+background: #FFFFFF;
+}
+
+.demo-heading{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 415;
+    font-size: 32px;
+    line-height: 40px;
+    color: #FFFFFF;
+}
+
+.demo-para{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 305;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: -0.02em;
+color: #FFFFFF;
+opacity: 0.8;
+}
+
+.demo-holder{
+    display: flex;
+    flex-direction: row;
+}
+
+.demo-setter{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.demo-img{
+    max-width: 25vw;
+}
+
+.img2{
+    padding-bottom: 20px;
+    max-height: 80vh;
+    margin-left: 40px;
+}
+
+.para2{
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 415;
+font-size: 32px;
+line-height: 40px;
+color: #FFFFFF;
+}
+
+.faqfather{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+
+.faqchild1{
+    max-width: 40vw;
+}
+
+.para1{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 305;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    opacity: 0.8;
+    padding-right: 10vw;
+}
+
+.myaccordion {
+    max-width: 50vw;
+    margin: 50px auto;
+    box-shadow: 0 0 1px rgba(0,0,0,0.1);
+  }
+  
+  .myaccordion .card,
+  .myaccordion .card:last-child .card-header {
+    border: none;
+  }
+  
+  .myaccordion .card-header {
+    border-bottom-color: #EDEFF0;
+    background: transparent;
+  }
+  
+  .myaccordion .fa-stack {
+    font-size: 18px;
+  }
+  
+  .myaccordion .btn {
+    width: 100%;
+    font-weight: bold;
+    color: #004987;
+    padding: 0;
+  }
+  
+  .myaccordion .btn-link:hover,
+  .myaccordion .btn-link:focus {
+    text-decoration: none;
+  }
+  
+  .myaccordion li + li {
+    margin-top: 10px;
+  }
+  

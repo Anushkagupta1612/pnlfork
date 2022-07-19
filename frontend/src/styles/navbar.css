@@ -1,0 +1,9 @@
+.margined{
+    margin-right: 30vw;;
+}
+
+.Nav{
+    background-image: linear-gradient(to left, #662D8C, black);
+    background-size: cover;
+    width: 99vw;
+}

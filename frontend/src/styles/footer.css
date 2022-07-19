@@ -1,0 +1,50 @@
+.head3{
+    color: #fff;
+    font-family: 'Sequel Sans';
+font-style: normal;
+font-weight: 215;
+font-size: 60px;
+margin-right: 20vw;
+margin-top: 5vh;
+}
+
+
+.footer{
+    display: flex;
+    background-color: #202328;;
+}
+
+.sidebar{
+    width: 15vw;
+    background-color:#393D43;
+    margin-right: 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-footer{
+    max-width: 80vw;
+}
+
+
+.para3{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 305;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    opacity: 0.8;
+    margin-right: 10vw;
+}
+
+.icons{
+    color: #FFFFFF;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
