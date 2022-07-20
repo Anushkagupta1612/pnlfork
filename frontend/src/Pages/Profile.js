@@ -49,7 +49,7 @@ const Profile = () => {
           </p>
           <button className="sellbut">SELL NFT</button>
           <h1 className="transaction">Previous Transactions</h1>
-          <table class="table table-borderless text-white">
+          <table class="table table-borderless text-white mb-5">
             <thead>
               <tr className="tablehead">
                 <th scope="col">Card Player</th>
