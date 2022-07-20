@@ -1,9 +1,23 @@
-import React from "react";
+import React,{ useState, useEffect} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/profile.css";
+import { useMoralis } from "react-moralis";
 
 const Profile = () => {
+
+  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
+  const [ data, setData ] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3005/profile/${user.get( 'ethAddress' )}`).then((res) => {
+      res.json().then((data1) => {
+        setData(data1);
+      })
+    }).catch((e)=> console.log(e.message));
+    
+  },[])
+  console.log(data)
+
   return (
     <div className="Nav">
       <Navbar />
@@ -17,7 +31,7 @@ const Profile = () => {
                 <p className="username">this is godfather</p>
                 <img src='./Vector.svg' className="ml-2" />
               </div>
-              <p className="address">0xG35fsTI23ds6giHFw8...</p>
+              <p className="address">{ user.get( 'ethAddress' ).substring( 0, 5 ) + "..." + user.get( 'ethAddress' ).substring( user.get( 'ethAddress' ).length - 5, user.get( 'ethAddress' ).length ) }</p>
             </div>
           </div>
           <h1 className="title1">You currently own</h1>

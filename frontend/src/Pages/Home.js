@@ -2,8 +2,10 @@ import React from "react";
 import "../styles/home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useMoralis } from "react-moralis";
 
 const Home = () => {
+  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
   return (
     <div className="Nav">
       <Navbar />
@@ -26,7 +28,7 @@ const Home = () => {
       </p>
       <div className="button-pos">
         <button className="learn-button">LEARN MORE</button>
-        <button className="wallet">CONNECT WALLET</button>
+        {!isAuthenticated && (<button className="wallet">CONNECT WALLET</button>)}
       </div>
       <div class="wrapper mt-5 pb-5">
         <marquee behavior="alternate">
@@ -51,7 +53,7 @@ const Home = () => {
           and television.
         </p>
         <div className="text-center">
-          <button className="working-button mr-5">Start Earning</button>
+          {!isAuthenticated && (<button className="working-button mr-5">Start Earning</button>)}
         </div>
       </div>
       <marquee behavior="alternate">
@@ -119,7 +121,7 @@ const Home = () => {
             control the actions of a remote device. In radio communication, used
             in radio and television.
           </p>
-          <button className="learn-button">CONNECT WALLET</button>
+          {!isAuthenticated && (<button className="learn-button">CONNECT WALLET</button>)}
         </div>
         <div className="faqchild2">
           <div id="accordion" class="myaccordion">

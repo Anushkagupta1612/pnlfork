@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Container, Navbar, Button } from 'react-bootstrap'
 import {
     NavLink
   } from "react-router-dom";
 import "../styles/navbar.css"
+import { useMoralis } from "react-moralis";
 
-const Navbar = () => {
+const Navbar1 = () => {
+
+  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
+
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,11 +35,20 @@ const Navbar = () => {
         <NavLink to="/trading">Trading</NavLink>
       </li>
     </ul>
-    <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">Connect Wallet</button>
+    { !isAuthenticated && (
+    <button onClick={ authenticate } class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">Connect Wallet</button>)}
+    { isAuthenticated && (
+            <>
+            <Navbar.Text>
+              Signed in as: <span className="heading">{ user.get( 'ethAddress' ).substring( 0, 5 ) + "..." + user.get( 'ethAddress' ).substring( user.get( 'ethAddress' ).length - 5, user.get( 'ethAddress' ).length ) }</span>
+            </Navbar.Text>
+            <Button variant="info" className="button1 mx-2" onClick={ logout } disabled={ isAuthenticating }>Logout</Button>
+            </>
+        ) }
   </div>
 </nav>
     </div>
   )
 }
 
-export default Navbar
+export default Navbar1

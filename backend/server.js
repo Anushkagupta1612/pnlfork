@@ -2,13 +2,21 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
+const cors=require("cors");
 
 dotenv.config();
 connectDB();
 
+// const corsOptions ={
+//    origin:'*', 
+//    credentials:true,        
+//    optionSuccessStatus:200,
+// }
+
 const app = express()
 
 app.use(bodyParser.json())
+// app.use(cors(corsOptions))
 
 // Available routes 
 app.use('/auction',require('./routes/auction'))
