@@ -15,6 +15,11 @@ connectDB();
 
 const app = express()
 
+app.use(cors({
+    'allowedHeaders': ['Content-Type'],
+    'origin': '*',
+    'preflightContinue': true
+}));
 app.use(bodyParser.json())
 // app.use(cors(corsOptions))
 
