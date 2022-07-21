@@ -3,6 +3,7 @@ import "../styles/home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useMoralis } from "react-moralis";
+import video from '../vid.mp4'
 
 const Home = () => {
   const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
@@ -102,8 +103,10 @@ const Home = () => {
       </marquee>
 
       <div className="d-flex">
-        <img src="./Group7.png" className="img2" />
-        <div>
+        {/* <img src="https://www.canva.com/design/DAFHDlOsAFU/zob3X4tP-fEFtZBdTCBmzg/edit?utm_content=DAFHDlOsAFU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" className="img2" /> */}
+        <video src={video} width="600" height="500" controls className="ml-4">
+        </video>
+        <div className="ml-5">
           <h1 class="head2 mt-5">Unlock a world full of possibilities.</h1>
           <p className="para2 ml-5 mt-5">25 + Countries</p>
           <p className="para2 ml-5 mt-3"> 100 + NFTs Served</p>

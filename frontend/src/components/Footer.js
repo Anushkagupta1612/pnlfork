@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="footer-content">
             <h1 className="head3">Ready to start earning? Connect your wallet and get 50 coins for free.</h1>
             <p className="para3 mt-5 mb-5">Radio signals transmitted from a controller device control the actions of a remote device. In radio communication, used in radio and television broadcasting, cell phones, two-way radios, wireless networking.Radio signals transmitted from a controller device control the actions of a remote device. In radio communication, used in radio and television broadcasting, cell phones, two-way radios, wireless networking.</p>
-            <img src='./Group14.png' className="img-footer"/>
+            <img src='./iplwinner.jpg' className="img-footer"/>
         </div>
     </div>
   )

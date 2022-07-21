@@ -10,34 +10,52 @@ const Profile = () => {
   const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
     useMoralis();
   const [data, setData] = useState([]);
+  const [sellVal, setsellVal] = useState(0);
   const address1 = user.get("ethAddress");
   const addr = ethers.utils.getAddress(address1);
 
-  useEffect(() => {
-    async function getData(){
-      await fetch(`http://localhost:3005/profile/${addr}`)
-      .then((res) => {
-        res.json().then((data1) => {
-          setData(data1);
-        });
-      })
-      .catch((e) => console.log(e.message));
-    }
+  async function getData(){
+    await fetch(`http://localhost:3005/profile/${addr}`)
+    .then((res) => {
+      res.json().then((data1) => {
+        setData(data1);
+      });
+    })
+    .catch((e) => console.log(e.message));
+  }
 
+  useEffect(() => {
     getData();
   }, []);
-
-  console.log(data);
 
   // let {score,playerId,history} = data1
   // let transaction = history.length
   // let player = CategoryData.playerId
 
+
+  const updateSellAmt = () => {
+    fetch(`http://localhost:3005/profile/${addr}`,{
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sell:true,
+        sellAmount:{sellVal}
+    })
+    }).then((res) => {
+      res.json().then((resp) => {
+        getData()
+      })
+    })
+  }
+
   return (
     <div className="Nav">
       <Navbar />
       <div className="profile">
-        <img src={`./${data[0].playerId}.png`} className="profile-img" />
+        {data.length != 0 ? (<img src={CategoryData[data[0].playerId][1]} className="profile-img" />): null}
         <div className="profile-content">
           <div className="profile-info">
             <img src="./Ellipse2.svg" className="mt-2 ml-1" />
@@ -59,22 +77,22 @@ const Profile = () => {
             </div>
           </div>
           <h1 className="title1">You currently own</h1>
-          <h1 className="title2">{CategoryData[data[0].playerId]}</h1>
+          <h1 className="title2">{data.length != 0 ? CategoryData[data[0].playerId][0] : null}</h1>
           <div className="icons-desc">
             <div className="icon1">
               <div>
                 <img src="./Stats.svg" />
               </div>
-              <p className="subtitle">{data[0].score} Score</p>
+              <p className="subtitle">{data.length != 0 ? data[0].score: null} Score</p>
             </div>
             <div className="icon2">
               <div>
                 <img src="./Coin.svg" />
               </div>
-              <p className="subtitle">{data[0].history.length} Transactions</p>
+              <p className="subtitle">{data.length != 0 ? data[0].history.length: null} Transactions</p>
             </div>
             <div className="icon3">
-              <p className="subtitle">{data.leaderboard} Rank</p>
+              <p className="subtitle">{data.length != 0 ? data.leaderboard : null} Rank</p>
             </div>
           </div>
           <p className="subtitle5 mt-4 ml-5">
@@ -125,6 +143,8 @@ const Profile = () => {
                       id="input-text"
                       required
                       spellcheck="false"
+                      value={sellVal}
+                      onChange={(e) => setsellVal(e.target.value)}
                     />
                     <span class="placeholder">Enter Price</span>
                   </div>
@@ -135,10 +155,11 @@ const Profile = () => {
                     type="button"
                     class="btn btn-secondary"
                     data-dismiss="modal"
+                    onClick={() => setsellVal(0)}
                   >
                     Close
                   </button>
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" class="btn btn-primary" onClick={()=> updateSellAmt()}>
                     Save changes
                   </button>
                 </div>
@@ -154,12 +175,12 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody>
-              {data[0].history.map((item) => 
+              {data.length != 0 ? data[0].history.map((item) => 
                 <tr>
                 <th scope="row">{item}</th>
-                <td>{CategoryData[item]}</td>
+                <td>{CategoryData[item][0]}</td>
               </tr>
-              )}
+              ): null}
             </tbody>
           </table>
         </div>
