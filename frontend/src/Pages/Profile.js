@@ -42,7 +42,7 @@ const Profile = () => {
       },
       body: JSON.stringify({
         sell:true,
-        sellAmount:{sellVal}
+        sellAmount:sellVal
     })
     }).then((res) => {
       res.json().then((resp) => {
