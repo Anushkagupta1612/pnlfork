@@ -72,10 +72,6 @@ const Auction = () => {
               </div>
 
               <div id="collapseOne1" class=" show collapse mt-3" aria-labelledby="headingOne" data-parent="#accordionExample1" >
-                {/* <button className='teamName mt-3' onClick={() => playerNameHandler() }> CSK </button>
-                <button className='teamName' onClick={() => playerNameHandler() }> CSK </button>
-                <button className='teamName' onClick={() => playerNameHandler() }> CSK </button>
-                <button className='teamName' onClick={() => playerNameHandler() }> CSK </button> */}
                 {team.map((item,val) =>(
                   <button className='teamName' onClick={() => playerNameHandler() }> {item} </button>)
                 )}

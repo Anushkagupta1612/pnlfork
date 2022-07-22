@@ -154,3 +154,48 @@ margin-bottom: 40px;
 .table1{
     margin-left: 5vw;
 }
+
+.paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 11px;
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid #2b2eff;
+    background-color: #FFF;
+    cursor: pointer;
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: #0fb945;
+  }
+  
+  .paginationActive a {
+    color: white;
+    background-color: #1bb7c2;
+  }
+  
+  .paginationDisabled a {
+    color: rgb(12, 14, 24);
+    background-color: grey;
+  }
+
+  .score1{
+    background: linear-gradient(137.44deg, #6FE9D3 0%, #6FE9D3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    
+    text-align: center;
+  }
+
+  .score2{
+    font-size: 45px;
+    line-height: 1.1;
+  }
