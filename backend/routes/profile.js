@@ -29,7 +29,9 @@ router.get('/:id', async function (req, res) {
         allData.map((item, index1) => {
             scores.push(item.score)
         })
-        scores = scores.sort()
+        scores = scores.sort((function(a, b) {
+            return a - b;
+        }))
         let score1 = profileData[0].score
         let index1 = scores.indexOf(score1)
         let profileData1 = {...profileData,"leaderboard":index1+1}

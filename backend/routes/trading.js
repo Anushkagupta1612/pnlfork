@@ -11,16 +11,48 @@ router.get('/:id/:id1', async function (req, res) {
         const tradingData = await User.find({playerId: _id1})
         let sellAmounts = []
         tradingData.map((item, index) => {
-            sellAmounts.push([item.address,item.sellAmount])
+            if(item.sellAmount>0){
+                sellAmounts.push([item.address,item.sellAmount])
+            }
         })
         if (sellAmounts.length == 0) {
             res.send([])
         }
+        let a = sellAmounts.length
+        if(sellAmounts.length < 5){
+            for (let i = 0; i <5-a; i++) {
+                sellAmounts.push([null,0])
+            }
+        }
         sellAmounts.sort(function (a, b) {
-            return a[1] - b[1];
+            return parseInt(a[1]) - parseInt(b[1]);
         })
-        let displaysellAmounts = sellAmounts.slice(0,Math.min(6,sellAmounts.length))
+        let displaysellAmounts = sellAmounts.slice(0,Math.min(5,sellAmounts.length))
         res.send(displaysellAmounts)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json("Some error occured!")      
+    }
+})
+
+// GET request to get the address of the smallest > 0 sellAmount
+router.get('/:id/', async function (req, res) {
+    try {
+        const playerid = req.params.id
+        const tradingData = await User.find({playerId: playerid})
+        let sellAmounts = []
+        tradingData.map((item, index) => {
+            if (item.sellAmount > 0) {
+                sellAmounts.push([true,item.sellAmount,item.address])
+            }
+        })
+        if (sellAmounts.length == 0) {
+            res.send([false,null])
+        }
+        sellAmounts.sort(function (a, b) {
+            return parseInt(a[1]) - parseInt(b[1]);
+        })
+        res.send(sellAmounts[0])
     } catch (error) {
         console.log(error.message)
         res.status(500).json("Some error occured!")      

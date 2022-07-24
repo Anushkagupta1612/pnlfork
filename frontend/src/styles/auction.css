@@ -43,11 +43,10 @@
   }
   
   .teamName:hover {
-    background-image: linear-gradient(to left, #00b4d8, black);
+    background-image: linear-gradient(to left, #f7f5f2, #3ab4f2);
   }
   
   .tradingButton {
-    height: 50px;
     width: 150px;
     font-size: larger;
     border-radius: 10px;
@@ -56,12 +55,13 @@
     background-color: #fff;
     color: #000;
     margin: 0px 20px;
+    padding: 5px;
   }
   
   .Panel {
     margin: auto;
     width: 30vw;
-    height: 500px;
+    
     background-image: linear-gradient(to left, #f7f5f2, #3ab4f2);
     border-radius: 20px;
     margin-top: 50px;
