@@ -2,11 +2,13 @@ import React from "react";
 import "../styles/home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useMoralis } from "react-moralis";
 import video from '../vid.mp4'
+import { ethers } from "ethers";
 
 const Home = () => {
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
+  const { ethereum } = window;
+
+
   return (
     <div className="Nav">
       <Navbar />
@@ -36,7 +38,7 @@ const Home = () => {
       </div>
       <div className="button-pos">
         <button className="learn-button">LEARN MORE</button>
-        {!isAuthenticated && (<button className="wallet">CONNECT WALLET</button>)}
+        {!account && (<button className="wallet">CONNECT WALLET</button>)}
       </div>
       <div class="wrapper mt-5 pb-5">
         <marquee behavior="alternate">
@@ -61,7 +63,7 @@ const Home = () => {
           and television.
         </p>
         <div className="text-center">
-          {!isAuthenticated && (<button className="working-button mr-5">Start Earning</button>)}
+          {!account && (<button className="working-button mr-5">Start Earning</button>)}
         </div>
       </div>
       <marquee behavior="alternate">
@@ -131,7 +133,7 @@ const Home = () => {
             control the actions of a remote device. In radio communication, used
             in radio and television.
           </p>
-          {!isAuthenticated && (<button className="learn-button">CONNECT WALLET</button>)}
+          {!account && (<button className="learn-button">CONNECT WALLET</button>)}
         </div>
         <div className="faqchild2">
           <div id="accordion" class="myaccordion">

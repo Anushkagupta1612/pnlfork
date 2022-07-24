@@ -7,6 +7,10 @@ import { PlayerIdData } from "../playerToid";
 import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 import { CategoryData } from "../data";
+import abi from "../artifacts/contracts/auction.sol/auction.json";
+
+const contractABI = abi.abi;
+const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
 
 const Auction = () => {
   const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
@@ -24,7 +28,9 @@ const Auction = () => {
 
   const [playerId, setPlayerId] = useState(0);
   const [sellVal, setsellVal] = useState(0);
-  const [playerid, setplayerid] = useState(0)
+  const [playerid, setplayerid] = useState(0);
+
+  const { ethereum } = window;
 
   const teamNameHandler = (e) => {
     setTeam(iplData[e]);
@@ -42,6 +48,7 @@ const Auction = () => {
   };
 
   const placeBidHandler = () => {
+    
     setplaceBid(true);
     placebid();
   };
@@ -94,8 +101,7 @@ const Auction = () => {
       .catch((e) => console.log(e.message));
   }
 
-
-  async function getData1(playerId){
+  async function getData1(playerId) {
     await fetch(`http://localhost:3005/auction/${addr}/${playerId}`)
       .then((res) => {
         res.json().then((data1) => {
@@ -105,26 +111,48 @@ const Auction = () => {
       .catch((e) => console.log(e.message));
   }
 
-  const updateSellAmt = async() => {
-    await fetch(`http://localhost:3005/auction/${addr}/${playerId}`,{
-      method: 'PATCH',
+  const updateSellAmt = async () => {
+    await fetch(`http://localhost:3005/auction/${addr}/${playerId}`, {
+      method: "PATCH",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        bid:sellVal
-    })
+        bid: sellVal,
+      }),
     }).then((res) => {
       res.json().then((resp) => {
-        setbidAmount(sellVal)
-        setsellVal(0)
-      })
-    })
-  }
+        setbidAmount(sellVal);
+        setsellVal(0);
+      });
+    });
+  };
+
+  const saveChange = async () => {
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const tempSigner = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        tempSigner
+      );
+      const newbidAmount = sellVal;
+      console.log(ethers.utils.parseEther('1'),'Anu');
+      const transaction = await contract.make_bid({
+        value: ethers.utils.parseEther((newbidAmount - bidAmount).toString())
+      });
+      await transaction.wait()
+      await updateSellAmt();
+    } else {
+      console.log("Metamask not found!");
+    }
+  };
 
   useEffect(() => {
-    getPlayer()
+    getPlayer();
   }, []);
 
   return (
@@ -224,7 +252,7 @@ const Auction = () => {
             <button className="tradingButton">
               Highest Bid -
               {data.length != 0 ? (
-                data[data.length - 1]
+                data[data.length - 1].toFixed(4)
               ) : (
                 <div class="spinner-border text-warning" role="status"></div>
               )}
@@ -232,7 +260,7 @@ const Auction = () => {
             <button className="tradingButton">
               Lowest Bid -
               {data.length != 0 ? (
-                data[0]
+                data[0].toFixed(4)
               ) : (
                 <div class="spinner-border text-warning" role="status"></div>
               )}
@@ -267,72 +295,78 @@ const Auction = () => {
             <></>
           ) : (
             <div className="Bid">
-              <button className="tradingButton">Your bid - {bidAmount} ({CategoryData[playerid][0]})</button>
+              <button className="tradingButton">
+                Your bid - {bidAmount} ({CategoryData[playerid][0]})
+              </button>
               {playerid == playerId && (
                 <button
-            type="button"
-            className="tradingButton"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            Update Bid
-          </button>
+                  type="button"
+                  className="tradingButton"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Update Bid
+                </button>
               )}
 
-          <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">
-                    Update Bid
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Update Bid
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
 
-                <div class="modal-body">
-                  <div class="input-block">
-                    <input
-                      type="text"
-                      name="input-text"
-                      id="input-text"
-                      required
-                      spellcheck="false"
-                      value={sellVal}
-                      onChange={(e) => setsellVal(e.target.value)}
-                    />
-                    <span class="placeholder">Enter Price</span>
+                    <div class="modal-body">
+                      <div class="input-block">
+                        <input
+                          type="text"
+                          name="input-text"
+                          id="input-text"
+                          required
+                          spellcheck="false"
+                          value={sellVal}
+                          onChange={(e) => setsellVal(e.target.value)}
+                        />
+                        <span class="placeholder">Enter Price</span>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                        onClick={() => setsellVal(0)}
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onClick={() => saveChange()}
+                      >
+                        Save changes
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                    onClick={() => setsellVal(0)}
-                  >
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-primary" onClick={()=> updateSellAmt()}>
-                    Save changes
-                  </button>
-                </div>
               </div>
-            </div>
-          </div>
             </div>
           )}
         </div>

@@ -34,10 +34,10 @@ router.get("/:id/:id1", async function (req, res) {
     const bidData = await Auction.find({ playerId: _id1 });
     let dummy = [];
     bidData.map((item, index) => {
-      dummy.push(parseInt(item.bid));
+      dummy.push(parseFloat(item.bid));
     });
 
-    var bids = new Int32Array(dummy);
+    var bids = new Float32Array(dummy);
     // for(let i = 0;i<bidData.length;i++) {
     //     bids[i] = bidData[i].bid;
     // }

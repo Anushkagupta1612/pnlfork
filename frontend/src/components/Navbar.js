@@ -4,15 +4,25 @@ import {
     NavLink
   } from "react-router-dom";
 import "../styles/navbar.css"
-import { useMoralis } from "react-moralis";
+import { ethers } from "ethers";
+
 
 const Navbar1 = () => {
+  const { ethereum } = window;
+  const [account, setaccount] = useState('')
 
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
+  const connect = async () => {
+    try {
+      const [ account1 ] = await ethereum.request( { method: 'eth_requestAccounts' } )
+      setaccount(account1);
+    } catch (e) {
+      console.log("error in request", e);
+    }
+  };
 
   return (
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div className="margined">
     <NavLink to="/">Pro NFT League</NavLink>
   </div>
@@ -35,14 +45,14 @@ const Navbar1 = () => {
         <NavLink to="/trading">Trading</NavLink>
       </li>
     </ul>
-    { !isAuthenticated && (
-    <button onClick={ authenticate } class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">Connect Wallet</button>)}
-    { isAuthenticated && (
+    { typeof ethereum !== "undefined" && (!account) && (
+    <button onClick={() => connect() } class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">Connect Wallet</button>)}
+    { typeof ethereum !== "undefined" && account && (
             <>
             <Navbar.Text>
-              Signed in as: <span className="heading">{ user.get( 'ethAddress' ).substring( 0, 5 ) + "..." + user.get( 'ethAddress' ).substring( user.get( 'ethAddress' ).length - 5, user.get( 'ethAddress' ).length ) }</span>
+              Signed in as: <span className="heading">{ account.substring( 0, 5 ) + "..." + account.substring( account.length - 5, account.length ) }</span>
             </Navbar.Text>
-            <Button variant="info" className="button1 mx-2" onClick={ logout } disabled={ isAuthenticating }>Logout</Button>
+            {/* <Button variant="info" className="button1 mx-2" onClick={ logout }>Logout</Button> */}
             </>
         ) }
   </div>
