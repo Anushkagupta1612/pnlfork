@@ -10,6 +10,8 @@ const Home = () => {
   return (
     <div className="Nav">
       <Navbar />
+      <div className='d-flex'>
+      <div>
       <h1 className="head1">Own the game.</h1>
       <div className="d-flex flex-row justify-center home">
         <div className="liendiv">
@@ -27,6 +29,11 @@ const Home = () => {
         broadcasting, cell phones, two-way radios, wireless networking and
         satellite communication among numerous other uses.
       </p>
+      </div>
+      <div>
+          <img src="./logo.PNG" className="logo"/>
+      </div>
+      </div>
       <div className="button-pos">
         <button className="learn-button">LEARN MORE</button>
         {!isAuthenticated && (<button className="wallet">CONNECT WALLET</button>)}

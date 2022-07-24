@@ -7,6 +7,7 @@ import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 import { PlayerIdData } from "../playerToid";
 import {iplData} from '../iplData'
+import { CategoryData } from "../data";
 
 const Trading = () => {
   const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
@@ -138,7 +139,16 @@ const Trading = () => {
       {
         !showImage ? <></> :
           <div className='NFTDetails'>
-            <img src='https://pbs.twimg.com/profile_images/1471139701025226752/oXOAz0JZ_400x400.jpg' className='PlayerNFT' />
+          {playerId != 0 ? (
+          <img
+            src={CategoryData[playerId][1]}
+            className='PlayerNFT'
+          />
+        ) : (
+          <div class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        )}
             <div className='Price'>
               {data.map((item, val) => (
                 <button

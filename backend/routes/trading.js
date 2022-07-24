@@ -15,11 +15,8 @@ router.get('/:id/:id1', async function (req, res) {
                 sellAmounts.push([item.address,item.sellAmount])
             }
         })
-        if (sellAmounts.length == 0) {
-            res.send([])
-        }
         let a = sellAmounts.length
-        if(sellAmounts.length < 5){
+        if(a < 5){
             for (let i = 0; i <5-a; i++) {
                 sellAmounts.push([null,0])
             }

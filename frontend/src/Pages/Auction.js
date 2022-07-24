@@ -268,7 +268,8 @@ const Auction = () => {
           ) : (
             <div className="Bid">
               <button className="tradingButton">Your bid - {bidAmount} ({CategoryData[playerid][0]})</button>
-              <button
+              {playerid == playerId && (
+                <button
             type="button"
             className="tradingButton"
             data-toggle="modal"
@@ -276,6 +277,7 @@ const Auction = () => {
           >
             Update Bid
           </button>
+              )}
 
           <div
             class="modal fade"

@@ -39,8 +39,8 @@ font-size: 80px;
     letter-spacing: -0.02em;
     color: #FFFFFF;
     opacity: 0.8;
-    margin-left: 10vw;
-    padding-right: 10vw;
+    margin-left: 5vw;
+    padding-right: 5vw;
 }
 
 .learn-button{
@@ -223,3 +223,7 @@ color: #FFFFFF;
     margin-top: 10px;
   }
   
+  .logo{
+    max-height: 45vh;
+    margin-top: 10vh;
+  }

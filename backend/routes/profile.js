@@ -30,8 +30,9 @@ router.get('/:id', async function (req, res) {
             scores.push(item.score)
         })
         scores = scores.sort((function(a, b) {
-            return a - b;
+            return parseInt(a) - parseInt(b);
         }))
+        scores.reverse()
         let score1 = profileData[0].score
         let index1 = scores.indexOf(score1)
         let profileData1 = {...profileData,"leaderboard":index1+1}
