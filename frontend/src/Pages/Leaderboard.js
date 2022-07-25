@@ -4,9 +4,11 @@ import Footer from "../components/Footer";
 import "../styles/leaderboard.css";
 import ReactPaginate from 'react-paginate';
 import { ethers } from "ethers";
+import { useWeb3React } from "@web3-react/core"
+import {injected} from '../components/wallet/connector'
 
 const Leaderboard = () => {
-  const [account, setAcct] = useState('')
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const start = 3;
@@ -51,11 +53,11 @@ const Leaderboard = () => {
       .catch((e) => console.log(e.message));
   }
 
-
   useEffect(() => {
     getData();
     getData1();
-  }, []);
+  }, [])
+  
 
   async function getData1(){
     await fetch(`http://localhost:3005/profile/${addr}`)
@@ -67,11 +69,9 @@ const Leaderboard = () => {
     .catch((e) => console.log(e.message));
   }
 
-
-
   return (
     <div className="Nav">
-      <Navbar connection={account => setAcct(account)} />
+      <Navbar />
       <div className="leftright">
         <div className="left" id="style-14">
           <div className="toppers">

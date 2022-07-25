@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/profile.css";
-import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 import { CategoryData } from "../data";
+import { useWeb3React } from "@web3-react/core"
+import {injected} from '../components/wallet/connector'
+
 
 const Profile = () => {
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
-    useMoralis();
+  const { ethereum } = window;
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [data, setData] = useState([]);
   const [sellVal, setsellVal] = useState(0);
-  const address1 = user.get("ethAddress");
-  const addr = ethers.utils.getAddress(address1);
+  const addr = ethers.utils.getAddress(account);
 
   async function getData() {
     await fetch(`http://localhost:3005/profile/${addr}`)
@@ -25,8 +26,9 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData()
+  }, [])
+  
 
   // let {score,playerId,history} = data1
   // let transaction = history.length
@@ -49,6 +51,7 @@ const Profile = () => {
       });
     });
   };
+
 
   return (
     <div className="Nav">
@@ -73,13 +76,12 @@ const Profile = () => {
                 <img src="./Vector.svg" className="ml-2" />
               </div>
               <p className="address">
-                {user.get("ethAddress").substring(0, 5) +
+                {account.substring(0, 5) +
                   "..." +
-                  user
-                    .get("ethAddress")
+                  account
                     .substring(
-                      user.get("ethAddress").length - 5,
-                      user.get("ethAddress").length
+                      account.length - 5,
+                      account.length
                     )}
               </p>
             </div>

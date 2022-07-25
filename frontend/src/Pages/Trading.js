@@ -1,17 +1,17 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer";
 import '../styles/trading.css';
-import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 import { PlayerIdData } from "../playerToid";
 import {iplData} from '../iplData'
 import { CategoryData } from "../data";
+import { useWeb3React } from "@web3-react/core"
+import {injected} from '../components/wallet/connector'
 
 const Trading = () => {
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
-    useMoralis();
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [ showPlayer, setshowPlayer ] = useState( false );
   const [ showImage, setshowImage ] = useState( false );
   const [ showBut, setshowBut] = useState( true );
@@ -20,8 +20,7 @@ const Trading = () => {
   const [team, setTeam] = useState([]);
   const [playerId, setPlayerId] = useState(0);
   const [sellerAddress, setsellerAddress ] = useState(0)
-  const address1 = user.get("ethAddress");
-  const addr = ethers.utils.getAddress(address1);
+  const addr = ethers.utils.getAddress(account);
 
   const teamNameHandler = (e) => {
     setTeam(iplData[e])
@@ -86,12 +85,11 @@ const Trading = () => {
       });
     });
   };
-  console.log(sellerAddress,showBut)
+
 
   return (
     <div className="Nav">
       <Navbar />
-
       <div className='Details'>
         <div class="accordion" id="accordionExample">
 

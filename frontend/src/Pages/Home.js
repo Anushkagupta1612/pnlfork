@@ -4,24 +4,25 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import video from '../vid.mp4'
 import { ethers } from "ethers";
+import {injected} from '../components/wallet/connector'
 import { useWeb3React } from "@web3-react/core"
 
 const Home = () => {
   const { ethereum } = window;
-  const [account, setAcct] = useState('')
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
 
-  const connect = async () => {
+  async function connect() {
     try {
-      const [ account1 ] = await ethereum.request( { method: 'eth_requestAccounts' } )
-      setAcct(account1);
-    } catch (e) {
-      console.log("error in request", e);
+      await activate(injected)
+      localStorage.setItem('isWalletConnected', true)
+    } catch (ex) {
+      console.log(ex)
     }
-  };
+  }
 
   return (
     <div className="Nav">
-      <Navbar connection={account => setAcct(account)} />
+      <Navbar />
       <div className='d-flex'>
       <div>
       <h1 className="head1">Own the game.</h1>

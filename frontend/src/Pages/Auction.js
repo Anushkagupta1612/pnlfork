@@ -4,17 +4,17 @@ import Footer from "../components/Footer";
 import "../styles/auction.css";
 import { iplData } from "../iplData";
 import { PlayerIdData } from "../playerToid";
-import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 import { CategoryData } from "../data";
+import { useWeb3React } from "@web3-react/core"
 import abi from "../artifacts/contracts/auction.sol/auction.json";
+import {injected} from '../components/wallet/connector'
 
 const contractABI = abi.abi;
 const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
 
 const Auction = () => {
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } =
-    useMoralis();
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [showPlayer, setshowPlayer] = useState(false);
   const [showButtons, setshowButtons] = useState(false);
   const [placeBid, setplaceBid] = useState(false);
@@ -23,8 +23,7 @@ const Auction = () => {
   const [data, setData] = useState([]);
 
   const [team, setTeam] = useState([]);
-  const address1 = user.get("ethAddress");
-  const addr = ethers.utils.getAddress(address1);
+  const addr = ethers.utils.getAddress(account);
 
   const [playerId, setPlayerId] = useState(0);
   const [sellVal, setsellVal] = useState(0);
@@ -152,13 +151,13 @@ const Auction = () => {
   };
 
   useEffect(() => {
-    getPlayer();
-  }, []);
+    getPlayer()
+  }, [])
+  
 
   return (
     <div className="Nav">
       <Navbar />
-
       <div className="Details">
         <div class="accordion" id="accordionExample">
           <div class="card">

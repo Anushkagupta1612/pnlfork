@@ -6,22 +6,45 @@ import {
 import "../styles/navbar.css"
 import { ethers } from "ethers";
 import {injected} from './wallet/connector'
+import { useWeb3React } from "@web3-react/core"
 
 
-const Navbar1 = (props) => {
+const Navbar1 = () => {
   const { ethereum } = window;
-  const [account, setaccount] = useState('')
-  
+  let { active, account, library, connector, activate, deactivate } = useWeb3React()
 
-  const connect = async () => {
+  async function connect() {
     try {
-      const [ account1 ] = await ethereum.request( { method: 'eth_requestAccounts' } )
-      setaccount(account1);
-      props.connection(account1);
-    } catch (e) {
-      console.log("error in request", e);
+      await activate(injected)
+      localStorage.setItem('isWalletConnected', true)
+    } catch (ex) {
+      console.log(ex)
     }
-  };
+  }
+
+  async function disconnect() {
+    try {
+      deactivate()
+      localStorage.setItem('isWalletConnected', false)
+    } catch (ex) {
+      console.log(ex)
+    }
+  }
+
+  useEffect(() => {
+    const connectWalletOnPageLoad = async () => {
+      if (localStorage?.getItem('isWalletConnected') === 'true') {
+        try {
+          await activate(injected)
+          localStorage.setItem('isWalletConnected', true)
+        } catch (ex) {
+          console.log(ex)
+        }
+      }
+    }
+    connectWalletOnPageLoad()
+  }, [])
+
 
   return (
     <div>
@@ -48,14 +71,14 @@ const Navbar1 = (props) => {
         <NavLink to="/trading">Trading</NavLink>
       </li>
     </ul>
-    { typeof ethereum !== "undefined" && (!account) && (
+    { typeof ethereum !== "undefined" && (!active ) && (
     <button onClick={() => connect() } class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">Connect Wallet</button>)}
-    { typeof ethereum !== "undefined" && account && (
+    { typeof ethereum !== "undefined" && active  && (
             <>
             <Navbar.Text>
               Signed in as: <span className="heading">{ account.substring( 0, 5 ) + "..." + account.substring( account.length - 5, account.length ) }</span>
             </Navbar.Text>
-            {/* <Button variant="info" className="button1 mx-2" onClick={ logout }>Logout</Button> */}
+            <Button variant="info" className="button1 mx-2" onClick={ disconnect }>Logout</Button>
             </>
         ) }
   </div>
