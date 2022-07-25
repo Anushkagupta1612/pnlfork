@@ -1,17 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import video from '../vid.mp4'
 import { ethers } from "ethers";
+import { useWeb3React } from "@web3-react/core"
 
 const Home = () => {
   const { ethereum } = window;
+  const [account, setAcct] = useState('')
 
+  const connect = async () => {
+    try {
+      const [ account1 ] = await ethereum.request( { method: 'eth_requestAccounts' } )
+      setAcct(account1);
+    } catch (e) {
+      console.log("error in request", e);
+    }
+  };
 
   return (
     <div className="Nav">
-      <Navbar />
+      <Navbar connection={account => setAcct(account)} />
       <div className='d-flex'>
       <div>
       <h1 className="head1">Own the game.</h1>
@@ -38,7 +48,7 @@ const Home = () => {
       </div>
       <div className="button-pos">
         <button className="learn-button">LEARN MORE</button>
-        {!account && (<button className="wallet">CONNECT WALLET</button>)}
+        {!account && (<button className="wallet" onClick={()=> connect()}>CONNECT WALLET</button>)}
       </div>
       <div class="wrapper mt-5 pb-5">
         <marquee behavior="alternate">
@@ -63,7 +73,7 @@ const Home = () => {
           and television.
         </p>
         <div className="text-center">
-          {!account && (<button className="working-button mr-5">Start Earning</button>)}
+          {!account && (<button onClick={()=> connect()} className="working-button mr-5">Start Earning</button>)}
         </div>
       </div>
       <marquee behavior="alternate">
@@ -133,7 +143,7 @@ const Home = () => {
             control the actions of a remote device. In radio communication, used
             in radio and television.
           </p>
-          {!account && (<button className="learn-button">CONNECT WALLET</button>)}
+          {!account && (<button className="learn-button" onClick={()=> connect()}>CONNECT WALLET</button>)}
         </div>
         <div className="faqchild2">
           <div id="accordion" class="myaccordion">

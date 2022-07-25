@@ -5,16 +5,19 @@ import {
   } from "react-router-dom";
 import "../styles/navbar.css"
 import { ethers } from "ethers";
+import {injected} from './wallet/connector'
 
 
-const Navbar1 = () => {
+const Navbar1 = (props) => {
   const { ethereum } = window;
   const [account, setaccount] = useState('')
+  
 
   const connect = async () => {
     try {
       const [ account1 ] = await ethereum.request( { method: 'eth_requestAccounts' } )
       setaccount(account1);
+      props.connection(account1);
     } catch (e) {
       console.log("error in request", e);
     }

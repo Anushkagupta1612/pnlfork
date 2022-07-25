@@ -3,18 +3,16 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/leaderboard.css";
 import ReactPaginate from 'react-paginate';
-import { useMoralis } from "react-moralis";
 import { ethers } from "ethers";
 
 const Leaderboard = () => {
-  const { authenticate, isAuthenticated, user, logout, isAuthenticating } = useMoralis();
+  const [account, setAcct] = useState('')
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const start = 3;
   const [start1, setstart] = useState(0);
   const [pageNumber,setpagenumber] = useState(0);
-  const address1 = user.get("ethAddress");
-  const addr = ethers.utils.getAddress(address1);
+  const addr = ethers.utils.getAddress(account);
 
   const usersPerpage = 7
   const pagesVisited = pageNumber*usersPerpage+start
@@ -73,7 +71,7 @@ const Leaderboard = () => {
 
   return (
     <div className="Nav">
-      <Navbar />
+      <Navbar connection={account => setAcct(account)} />
       <div className="leftright">
         <div className="left" id="style-14">
           <div className="toppers">
