@@ -31,7 +31,7 @@ module.exports = {
     artifacts: '../frontend/src/artifacts',
   },
   etherscan: {
-    apiKey: "AurMaGtBd_KnUAIzmHNpPhA04XVU_yKA",
+    apiKey: "CJJTBF2QU4T4S8GIHRND9TF8TJQ7TAEKFQ",
   }
 
 }

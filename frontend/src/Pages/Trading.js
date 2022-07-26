@@ -58,6 +58,7 @@ const Trading = () => {
             setshowBut(false);
           }else{
             setsellerAddress(data1[2])
+            setshowBut(true);
           }
           return;
         });

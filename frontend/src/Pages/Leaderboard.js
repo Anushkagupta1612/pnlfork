@@ -69,6 +69,8 @@ const Leaderboard = () => {
     .catch((e) => console.log(e.message));
   }
 
+  console.log(data1)
+
   return (
     <div className="Nav">
       <Navbar />
@@ -168,7 +170,8 @@ const Leaderboard = () => {
             networking and satellite communication among numerous other uses.
           </p>
           <article className="score1 mt-5">
-            <h1 className="score2">Your position on the Leaderboard - {data1.length != 0 ? data1.leaderboard : null}</h1>
+            {Object.keys(data1).length != 0 && (<h1 className="score2">Your position on the Leaderboard - {data1.leaderboard} </h1>)}
+            {Object.keys(data1).length == 0 && (<h1 className="score2"> Invest in super cool player NFTs </h1>)}
           </article>
 
         </div>

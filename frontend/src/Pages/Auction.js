@@ -8,7 +8,7 @@ import { ethers } from "ethers";
 import { CategoryData } from "../data";
 import { useWeb3React } from "@web3-react/core"
 import abi from "../artifacts/contracts/auction.sol/auction.json";
-import {injected} from '../components/wallet/connector'
+
 
 const contractABI = abi.abi;
 const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
@@ -46,10 +46,26 @@ const Auction = () => {
     getData1(PlayerIdData[e]);
   };
 
-  const placeBidHandler = () => {
-    
-    setplaceBid(true);
-    placebid();
+  const placeBidHandler = async() => {
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const tempSigner = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        tempSigner
+      );
+      const newbidAmount = bidAmount;
+      const transaction = await contract.make_bid({
+        value: ethers.utils.parseEther((newbidAmount).toString())
+      });
+      await transaction.wait()
+      setplaceBid(true);
+      placebid();
+    } else {
+      console.log("Metamask not found!");
+    }
   };
 
   // async function update(){
@@ -139,7 +155,6 @@ const Auction = () => {
         tempSigner
       );
       const newbidAmount = sellVal;
-      console.log(ethers.utils.parseEther('1'),'Anu');
       const transaction = await contract.make_bid({
         value: ethers.utils.parseEther((newbidAmount - bidAmount).toString())
       });
@@ -160,7 +175,7 @@ const Auction = () => {
       <Navbar />
       <div className="Details">
         <div class="accordion" id="accordionExample">
-          <div class="card">
+          <div>
             <h2 class="mb-0">
               <button
                 class=" cardInnerBox btn btn-link btn-block text-left"
@@ -184,21 +199,17 @@ const Auction = () => {
             <button
               className="teamName mt-3"
               onClick={() => teamNameHandler("CSK")}
-            >
-              {" "}
-              CSK{" "}
+            >      
+              CSK
             </button>
-            <button className="teamName" onClick={() => teamNameHandler("MI")}>
-              {" "}
-              MI{" "}
+            <button className="teamName" onClick={() => teamNameHandler("MI")}>    
+              MI
             </button>
             <button className="teamName" onClick={() => teamNameHandler("GT")}>
-              {" "}
-              GT{" "}
+              GT
             </button>
             <button className="teamName" onClick={() => teamNameHandler("RR")}>
-              {" "}
-              RR{" "}
+              RR
             </button>
           </div>
         </div>

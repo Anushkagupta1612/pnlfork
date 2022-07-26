@@ -24,6 +24,10 @@ router.get('/:id', async function (req, res) {
     try {
         const _id = req.params.id
         const profileData = await User.find({address: _id})
+        if(profileData.length === 0) {
+            res.send({})
+            return
+        }
         const allData = await User.find()
         let scores = []
         allData.map((item, index1) => {

@@ -48,7 +48,7 @@ const Navbar1 = () => {
 
   return (
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="margined">
     <NavLink to="/">Pro NFT League</NavLink>
   </div>

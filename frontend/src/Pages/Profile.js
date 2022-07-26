@@ -5,15 +5,21 @@ import "../styles/profile.css";
 import { ethers } from "ethers";
 import { CategoryData } from "../data";
 import { useWeb3React } from "@web3-react/core"
-import {injected} from '../components/wallet/connector'
+import abi from "../artifacts/contracts/auction.sol/auction.json";
 
 
 const Profile = () => {
   const { ethereum } = window;
   let { active, account, library, connector, activate, deactivate } = useWeb3React()
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [sellVal, setsellVal] = useState(0);
   const addr = ethers.utils.getAddress(account);
+  const [showbutton, setshowbutton] = useState(localStorage?localStorage.getItem('withdraw'):true);
+  const contractABI = abi.abi;
+  const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
+
+
+
 
   async function getData() {
     await fetch(`http://localhost:3005/profile/${addr}`)
@@ -52,24 +58,43 @@ const Profile = () => {
     });
   };
 
+  const withdraw = async() => {
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const tempSigner = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        tempSigner
+      );
+      const transaction = await contract.return_money(addr);
+      await transaction.wait()
+      setshowbutton(false)
+      localStorage.setItem('withdraw', false)
+    } else {
+      console.log("Metamask not found!");
+    }
+  };
+
+
+  console.log(showbutton)
 
   return (
     <div className="Nav">
       <Navbar />
       <div className="profile">
-        {data.length != 0 ? (
+        {Object.keys(data).length != 0 ? (
           <img
             src={CategoryData[data[0].playerId][1]}
             className="profile-img"
           />
         ) : (
-          <div class="spinner-border text-warning" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
+          <img src="./logo.PNG" className="profile-img"/>
         )}
         <div className="profile-content">
           <div className="profile-info">
-            <img src="./Ellipse2.svg" className="mt-2 ml-1" />
+            <img src="./Ellipse2.svg" className="mt-1 mr-2 ml-1" />
             <div className="profile-info2">
               <div className="profile-info1">
                 <p className="username">this is godfather</p>
@@ -86,29 +111,30 @@ const Profile = () => {
               </p>
             </div>
           </div>
-          <h1 className="title1">You currently own</h1>
+
+          {Object.keys(data).length != 0 ? (
+            <h1 className="title1">You currently own</h1>
+            ) : (
+              <h1 className="title1">Invest in cool player NFTs</h1>
+            )}
           <h1 className="title2">
-            {data.length != 0 ? (
+            {Object.keys(data).length != 0 ? (
               CategoryData[data[0].playerId][0]
             ) : (
-              <div class="spinner-border text-warning" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
+              <h1 className="title3">Go the trading page and start your journey!</h1>
             )}
           </h1>
+
           <div className="icons-desc">
             <div className="icon1">
               <div>
-                <img src="./Stats.svg" />
               </div>
               <p className="subtitle">
-                {data.length != 0 ? (
+                {Object.keys(data).length != 0 ? (
                   data[0].score
                 ) : (
-                  <div class="spinner-border text-warning" role="status">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                )}{" "}
+                  ' -- '
+                )}
                 Score
               </p>
             </div>
@@ -116,26 +142,25 @@ const Profile = () => {
               <div>
                 <img src="./Coin.svg" />
               </div>
-              <p className="subtitle">
-                {data.length != 0 ? (
+              <p className="subtitle mr-1">
+                {Object.keys(data).length != 0 ? (
                   data[0].history.length
                 ) : (
-                  <div class="spinner-border text-warning" role="status">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                )}{" "}
+                  ' -- '
+                )}
                 Transactions
               </p>
             </div>
             <div className="icon3">
+              <div>
+                <img src="./Stats.svg" />
+              </div>
               <p className="subtitle">
-                {data.length != 0 ? (
+                {Object.keys(data).length != 0 ? (
                   data.leaderboard
                 ) : (
-                  <div class="spinner-border text-warning" role="status">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                )}{" "}
+                  ' -- '
+                )}
                 Rank
               </p>
             </div>
@@ -148,7 +173,9 @@ const Profile = () => {
             wireless networking and satellite communication among numerous other
             uses.
           </p>
-          <button
+
+          {Object.keys(data).length != 0 ? (
+            <button
             type="button"
             class="sellbut"
             data-toggle="modal"
@@ -156,6 +183,16 @@ const Profile = () => {
           >
             SELL NFT
           </button>
+                ) : (
+                  null
+                )}
+
+                {(Object.keys(data).length == 0 && showbutton) ? (
+                  <button class="sellbut" type="button" onClick={() => withdraw() }>Withdraw Funds!</button>
+                ) : (
+                  null
+                )}
+
 
           <div
             class="modal fade"
@@ -215,8 +252,10 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <h1 className="transaction">Previous Transactions</h1>
-          <table class="table table-borderless text-white mb-5">
+          {Object.keys(data).length != 0 ? (
+            <>
+            <h1 className="transaction">Previous Transactions</h1>
+            <table class="table table-borderless text-white mb-5">
             <thead>
               <tr className="tablehead">
                 <th scope="col">Card Player Id</th>
@@ -224,20 +263,18 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody>
-              {data.length != 0 ? (
-                data[0].history.map((item) => (
+                {data[0].history.map((item) => (
                   <tr>
                     <th scope="row">{item}</th>
                     <td>{CategoryData[item][0]}</td>
                   </tr>
-                ))
-              ) : (
-                <div class="spinner-border text-warning" role="status">
-                  <span class="sr-only">Loading...</span>
-                </div>
-              )}
+                ))}
             </tbody>
           </table>
+          </>
+              ) : (
+                <h1 className="transaction mb-5">Your Transactions will be shown here!</h1>
+              )}
         </div>
       </div>
       <Footer />

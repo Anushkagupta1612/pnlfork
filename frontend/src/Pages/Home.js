@@ -25,6 +25,9 @@ const Home = () => {
       <Navbar />
       <div className='d-flex'>
       <div>
+          <img src="./logo.PNG" className="logo"/>
+      </div>
+      <div>
       <h1 className="head1">Own the game.</h1>
       <div className="d-flex flex-row justify-center home">
         <div className="liendiv">
@@ -43,12 +46,11 @@ const Home = () => {
         satellite communication among numerous other uses.
       </p>
       </div>
-      <div>
-          <img src="./logo.PNG" className="logo"/>
-      </div>
       </div>
       <div className="button-pos">
+        <a href='#faq'>
         <button className="learn-button">LEARN MORE</button>
+        </a>
         {!account && (<button className="wallet" onClick={()=> connect()}>CONNECT WALLET</button>)}
       </div>
       <div class="wrapper mt-5 pb-5">
@@ -134,7 +136,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="faqfather mt-5 ml-5">
+      <div id="faq" className="faqfather mt-5 ml-5">
         <div className="faqchild1">
           <h1 className="text-white">What the FAQ?</h1>
           <p className="para1 mt-2">

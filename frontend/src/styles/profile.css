@@ -8,6 +8,7 @@
 .profile{
     display: flex;
     flex-direction: row;
+    margin-top: 4vh;
 }
 
 .title1{
@@ -27,6 +28,15 @@ margin-top: 8vh;
     font-weight: 415;
     font-size: 80px;
     line-height: 88px;
+    color: #FFFFFF;
+}
+
+.title3{
+    font-family: 'Sequel Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 50px;
+    line-height: 60px;
     color: #FFFFFF;
 }
 
@@ -100,7 +110,6 @@ align-items: center;
 padding: 8px 20px;
 gap: 2px;
 
-width: 100px;
 height: 40px;
 
 background: rgba(255, 255, 255, 0.2);
@@ -130,7 +139,7 @@ align-items: flex-start;
 padding: 10px 10px;
 gap: 10px;
 
-width: 100px;
+max-width: 150px;
 
 background: rgba(255, 255, 255, 0.2);
 
@@ -201,7 +210,6 @@ display: flex;
     font-style: normal;
     font-weight: 305;
     font-size: 16px;
-    margin-left: 15px;
     color: #FFFFFF;
     transform: translateY(-15px);
 }
