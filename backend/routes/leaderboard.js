@@ -18,9 +18,11 @@ router.get('/', async function (req, res) {
 // Retrieve the top 20% bids of each playerId from Auction Table and send 
 // POST request to User Table and 
 // POST request to Player Table
-router.post('/:id/:id1', async function (req, res) {
+router.post('/', async function (req, res) {
     try {
+        
         Auction.find().distinct('playerId', async function(error, ids) {
+            let topaddressList = []
             // ids is an array of all playerIds
             for (var i = 0; i < ids.length; i++) {
                 let addressListByIdSize = await Auction.find({playerId:ids[i]},{address:1,playerId:1,_id:0}).count()
@@ -29,6 +31,7 @@ router.post('/:id/:id1', async function (req, res) {
                 let addressList = []
                 for (var j = 0; j < addressListById.length; j++) {
                     addressList.push(addressListById[j].address)
+                    topaddressList.push(addressListById[j].address)
                 }
                 let player = await Player.create({
                     playerId: ids[i],
@@ -49,8 +52,8 @@ router.post('/:id/:id1', async function (req, res) {
                     user.save()
                 }
               }
+              res.send(topaddressList)
         });
-        res.send("Mission Complete!")
     } catch (error) {
         console.log(error.message)
         res.status(500).json("Some error occured!")

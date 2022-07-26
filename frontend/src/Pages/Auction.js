@@ -14,7 +14,7 @@ const contractABI = abi.abi;
 const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
 
 const Auction = () => {
-  let { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [showPlayer, setshowPlayer] = useState(false);
   const [showButtons, setshowButtons] = useState(false);
   const [placeBid, setplaceBid] = useState(false);
@@ -89,7 +89,7 @@ const Auction = () => {
     await fetch(`http://localhost:3005/auction/${addr}/${playerId}`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        'Accept': "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

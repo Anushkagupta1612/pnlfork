@@ -9,7 +9,7 @@ import { useWeb3React } from "@web3-react/core"
 
 const Home = () => {
   const { ethereum } = window;
-  let { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, account, library, connector, activate, deactivate } = useWeb3React()
 
   async function connect() {
     try {
@@ -28,22 +28,15 @@ const Home = () => {
           <img src="./logo.PNG" className="logo"/>
       </div>
       <div>
-      <h1 className="head1">Own the game.</h1>
+      <h1 className="head1">Play & Earn.</h1>
       <div className="d-flex flex-row justify-center home">
         <div className="liendiv">
           <hr className="line" />
         </div>
-        <h1 className="head2">Literally.</h1>
+        <h1 className="head2"> Certainly.</h1>
       </div>
       <p className="para">
-        Radio signals transmitted from a controller device control the actions
-        of a remote device. In radio communication, used in radio and television
-        broadcasting, cell phones, two-way radios, wireless networking and
-        satellite communication among numerous other uses.Radio signals
-        transmitted from a controller device control the actions of a remote
-        device. In radio communication, used in radio and television
-        broadcasting, cell phones, two-way radios, wireless networking and
-        satellite communication among numerous other uses.
+        Are you the crazy cricket fan who can't afford to miss a single IPL match? You have the uncanny ability to memorise every single stats of players and predit who's gonna do well! But, alas there is no monetary incentive 😭. Don't worry we are here just for you guys! Monetise your cricketing knowledge and get exclusive rewards from us! Start trading player nfts once the tourney begins and book profits and notch up your score! Get the taste of the unique combo of cricket and nft served to entertain you and also, help you earn and incentive your cricketing knowledge!
       </p>
       </div>
       </div>
@@ -56,13 +49,12 @@ const Home = () => {
       <div class="wrapper mt-5 pb-5">
         <marquee behavior="alternate">
           <span class="marquee txt">
-            Instant rewards • Secure transactions • IPL Seasons
+            Rewards • Secure transactions • IPL Seasons • Player NFTs
           </span>
         </marquee>
         <marquee behavior="alternate">
           <span class="marquee txt">
-            Real World Information • Limited NFTs • Bonus Prizes • Real World
-            Information
+            Trading NFTs • IPL • Bonus Prizes • Auction favourite players • Earn money
           </span>
         </marquee>
       </div>

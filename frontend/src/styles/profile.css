@@ -13,13 +13,13 @@
 
 .title1{
     font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 355;
-font-size: 24px;
-line-height: 32px;
-color: #FFFFFF;
-opacity: 0.7;
-margin-top: 8vh;
+    font-style: normal;
+    font-weight: 355;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+    opacity: 0.7;
+    margin-top: 8vh;
 }
 
 .title2{
@@ -142,9 +142,7 @@ gap: 10px;
 max-width: 150px;
 
 background: rgba(255, 255, 255, 0.2);
-
-/* Inside auto layout */
-
+margin-right: 20px;
 flex: none;
 order: 0;
 flex-grow: 0;

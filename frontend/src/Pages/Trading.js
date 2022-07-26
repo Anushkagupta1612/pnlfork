@@ -11,7 +11,7 @@ import { useWeb3React } from "@web3-react/core"
 import {injected} from '../components/wallet/connector'
 
 const Trading = () => {
-  let { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [ showPlayer, setshowPlayer ] = useState( false );
   const [ showImage, setshowImage ] = useState( false );
   const [ showBut, setshowBut] = useState( true );

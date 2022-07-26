@@ -6,4 +6,5 @@
     background-image: linear-gradient(to left, #120f2c, black);
     background-size: cover;
     width: 98.92vw;
+    overflow-x: hidden;
 }

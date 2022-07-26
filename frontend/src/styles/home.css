@@ -18,12 +18,13 @@ font-size: 80px;
 
 .line{
     border: 1px solid #FFFFFF;
-    width: 200px;
+    width: 150px;
     height: 0px;
 }
 
 .liendiv{
     margin-left: 5vw;
+    margin-right: 1vw;
 }
 
 .home{

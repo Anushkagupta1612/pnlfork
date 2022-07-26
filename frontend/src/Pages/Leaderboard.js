@@ -8,7 +8,7 @@ import { useWeb3React } from "@web3-react/core"
 import {injected} from '../components/wallet/connector'
 
 const Leaderboard = () => {
-  let { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, account, library, connector, activate, deactivate } = useWeb3React()
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const start = 3;
