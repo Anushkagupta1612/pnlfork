@@ -1,4 +1,4 @@
-export const CategoryData  = {
+export const CategoryData = {
    '1': [ 'MS Dhoni', 'https://assets.iplt20.com/ipl/IPLHeadshot2022/1.png' ],
    '2': [ 'Ravindra Jadeja', 'https://assets.iplt20.com/ipl/IPLHeadshot2022/9.png' ],
    '3': [ 'Moeen Ali', 'https://assets.iplt20.com/ipl/IPLHeadshot2022/1735.png' ],
