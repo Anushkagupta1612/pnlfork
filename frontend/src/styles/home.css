@@ -1,230 +1,257 @@
-.head1{
-    color: #fff;
-    margin-left: 5vw;
-    margin-top: 1vh;
-    font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 415;
-font-size: 80px;
+.head1 {
+  color: #fff;
+  margin-left: 5vw;
+  margin-top: 1vh;
+  /* font-family: "Sequel Sans"; */
+  font-family: "Bangers", cursive !important;
+  /* font-style: normal;
+  font-weight: 415;
+  font-size: 80px; */
+  font-size: 90px !important;
+  color: #f56fad !important;
 }
 
-.head2{
-    color: #fff;
-    font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 415;
-font-size: 80px;
+.head2 {
+  color: #7a4495 !important;
+  /* font-family: "Sequel Sans"; */
+  font-family: "Bangers", cursive !important;
+  /* font-style: normal;
+  font-weight: 415;
+  font-size: 80px; */
 }
 
-.line{
-    border: 1px solid #FFFFFF;
-    width: 150px;
-    height: 0px;
+.line {
+  border: 1px solid #ffffff;
+  width: 150px;
+  height: 0px;
 }
 
-.liendiv{
-    margin-left: 5vw;
-    margin-right: 1vw;
+.liendiv {
+  margin-left: 5vw;
+  margin-right: 1vw;
 }
 
-.home{
-    align-items: center;
+.home {
+  align-items: center;
 }
 
-.para{
-    font-family: 'Sequel Sans';
-    font-style: normal;
-    font-weight: 305;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: -0.02em;
-    color: #FFFFFF;
-    opacity: 0.8;
-    margin-left: 5vw;
-    padding-right: 5vw;
+.para {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 305;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  opacity: 0.8;
+  margin-left: 5vw;
+  padding-right: 5vw;
+  font-family: "Alata", sans-serif !important;
+  letter-spacing: 2.2px !important;
 }
 
-.learn-button{
-    padding: 16px 24px;
-    gap: 10px;
-    height: 56px;
-    background: #FFFFFF;
-    order: 0;
-    flex-grow: 0;
-    margin-left: 35vw;
-    margin-top: 30px;
-    margin-right:10px;
+.learn-button {
+  padding: 16px 24px;
+  gap: 10px;
+  height: 56px;
+  background: #ffffff;
+  order: 0;
+  flex-grow: 0;
+  margin-left: 35vw;
+  margin-top: 30px;
+  margin-right: 10px;
 }
 
-.wallet{
-    padding: 16px 24px;
-    gap: 10px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.2);
-    order: 1;
-    flex-grow: 0;
-    color: #fff;
-    margin-left: 10px;
-    margin-top: 30px;
+.wallet {
+  padding: 16px 24px;
+  gap: 10px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.2);
+  order: 1;
+  flex-grow: 0;
+  color: #fff;
+  margin-left: 10px;
+  margin-top: 30px;
 }
 
-.button-pos{
-    display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 0px;
-gap: 24px;
+.button-pos {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 24px;
 }
 
-.txt{
-    font-family: 'Sequel Sans';
-    font-style: normal;
-    font-weight: 415;
-    font-size: 80px;
-    line-height: 88px;
-    color: #FFFFFF;
-    opacity: 0.15;
+.txt {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 415;
+  font-size: 80px;
+  line-height: 88px;
+  color: #ffffff;
+  opacity: 0.15;
 }
 
 .marquee {
-    white-space: nowrap;
-    -webkit-animation: rightThenLeft 4s linear;
+  white-space: nowrap;
+  -webkit-animation: rightThenLeft 4s linear;
 }
 
-.working{
-    display: flex;
+.working {
+  display: flex;
 }
 
-.working-para{
-    font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 305;
-font-size: 16px;
-line-height: 20px;
-letter-spacing: -0.02em;
-color: #FFFFFF;
-opacity: 0.8;
-margin-left: 100px;
+.working-para {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 305;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  opacity: 0.8;
+  margin-left: 100px;
+  font-family: "Alata", sans-serif !important;
+  letter-spacing: 2.2px !important;
 }
 
-.working-button{
-    padding: 16px 24px;
-gap: 10px;
+.working-button {
+  padding: 16px 24px;
+  gap: 10px;
 
-width: 159px;
-height: 56px;
-background: #FFFFFF;
+  width: 159px;
+  height: 56px;
+  background: #ffffff;
 }
 
-.demo-heading{
-    font-family: 'Sequel Sans';
-    font-style: normal;
-    font-weight: 415;
-    font-size: 32px;
-    line-height: 40px;
-    color: #FFFFFF;
+.demo-heading {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 415;
+  font-size: 32px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Bangers", cursive !important;
+  color: #f56fad !important;
 }
 
-.demo-para{
-    font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 305;
-font-size: 16px;
-line-height: 20px;
-letter-spacing: -0.02em;
-color: #FFFFFF;
-opacity: 0.8;
+.demo-para {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 305;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  opacity: 0.8;
+  font-family: "Alata", sans-serif !important;
+  letter-spacing: 1.2px !important;
 }
 
-.demo-holder{
-    display: flex;
-    flex-direction: row;
+.demo-holder {
+  display: flex;
+  flex-direction: row;
 }
 
-.demo-setter{
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
+.demo-setter {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
 }
 
-.demo-img{
-    max-width: 25vw;
+.demo-img {
+  max-width: 25vw;
 }
 
-.img2{
-    padding-bottom: 20px;
-    max-height: 80vh;
-    margin-left: 40px;
+.img2 {
+  padding-bottom: 20px;
+  max-height: 80vh;
+  margin-left: 40px;
 }
 
-.para2{
-    font-family: 'Sequel Sans';
-font-style: normal;
-font-weight: 415;
-font-size: 32px;
-line-height: 40px;
-color: #FFFFFF;
+.para2 {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 415;
+  font-size: 32px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Alata", sans-serif !important;
+  letter-spacing: 2.2px !important;
 }
 
-.faqfather{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 20px;
+.faqfather {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
 }
 
-.faqchild1{
-    max-width: 40vw;
+.faqchild1 {
+  max-width: 40vw;
 }
 
-.para1{
-    font-family: 'Sequel Sans';
-    font-style: normal;
-    font-weight: 305;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: -0.02em;
-    color: #FFFFFF;
-    opacity: 0.8;
-    padding-right: 10vw;
+.para1 {
+  font-family: "Sequel Sans";
+  font-style: normal;
+  font-weight: 305;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  opacity: 0.8;
+  padding-right: 10vw;
+  font-family: "Alata", sans-serif !important;
+  letter-spacing: 2.2px !important;
 }
 
 .myaccordion {
-    max-width: 50vw;
-    margin: 50px auto;
-    box-shadow: 0 0 1px rgba(0,0,0,0.1);
-  }
-  
-  .myaccordion .card,
-  .myaccordion .card:last-child .card-header {
-    border: none;
-  }
-  
-  .myaccordion .card-header {
-    border-bottom-color: #EDEFF0;
-    background: transparent;
-  }
-  
-  .myaccordion .fa-stack {
-    font-size: 18px;
-  }
-  
-  .myaccordion .btn {
-    width: 100%;
-    font-weight: bold;
-    color: #004987;
-    padding: 0;
-  }
-  
-  .myaccordion .btn-link:hover,
-  .myaccordion .btn-link:focus {
-    text-decoration: none;
-  }
-  
-  .myaccordion li + li {
-    margin-top: 10px;
-  }
-  
-  .logo{
-    max-height: 45vh;
-    margin-top: 10vh;
-  }
+  max-width: 50vw;
+  margin: 50px auto;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.myaccordion .card,
+.myaccordion .card:last-child .card-header {
+  border: none;
+}
+
+.myaccordion .card-header {
+  border-bottom-color: #edeff0;
+  background: transparent;
+}
+
+.myaccordion .fa-stack {
+  font-size: 18px;
+}
+
+.myaccordion .btn {
+  width: 100%;
+  font-weight: bold;
+  color: #004987;
+  padding: 0;
+}
+
+.myaccordion .btn-link:hover,
+.myaccordion .btn-link:focus {
+  text-decoration: none;
+}
+
+.myaccordion li + li {
+  margin-top: 10px;
+}
+
+.logo {
+  max-height: 45vh;
+  margin-top: 10vh;
+}
+
+.howItWorks {
+  font-family: "Bangers", cursive !important;
+  color: #7a4495 !important;
+}
+
+.FAQheading {
+  font-family: "Bangers", cursive !important;
+  color: #f56fad !important;
+  font-size: 45px !important;
+}

@@ -149,35 +149,38 @@ const Profile = () => {
         console.log( url );
 
         const stringurl = url.toString();
+        const tempMetadata = MetaData[ data[ 0 ].playerId ]
+        tempMetadata.image = stringurl;
+        console.log( tempMetadata );
+        // const metadata =
+        // {
+        //   "description": "These are awesome NFTs created by PNL",
+        //   "external_url": "",
+        //   "image": stringurl,
+        //   "name": "DogsAreCute",
+        //   "attributes": [
+        //     {
+        //       "trait_type": "Animal",
+        //       "value": "Dog"
+        //     },
+        //     {
+        //       "trait_type": "Looks",
+        //       "value": "Cute"
+        //     },
+        //     {
+        //       "trait_type": "Will u pet it?",
+        //       "value": "yes"
+        //     },
+        //   ],
+        // }
 
-        const metadata =
-        {
-          "description": "These are awesome NFTs created by PNL",
-          "external_url": "",
-          "image": stringurl,
-          "name": "DogsAreCute",
-          "attributes": [
-            {
-              "trait_type": "Animal",
-              "value": "Dog"
-            },
-            {
-              "trait_type": "Looks",
-              "value": "Cute"
-            },
-            {
-              "trait_type": "Will u pet it?",
-              "value": "yes"
-            },
-          ],
-        }
-
-        const metadata_string = JSON.stringify( metadata );
+        const metadata_string = JSON.stringify( tempMetadata );
         const textipfs = await client.add( metadata_string );
         const metadataurl = `https://ipfs.infura.io/ipfs/${ textipfs.path }`
         console.log( metadataurl );
 
         const tokenID = await contract.mintToken( metadataurl );
+        // 2 5 67 100 56 
       }
       else {
         console.log( "Metamask not found" );
@@ -188,7 +191,7 @@ const Profile = () => {
     }
   };
 
-  console.log( data[ 0 ].playerId )
+  // console.log( data[ 0 ].playerId )
 
   return (
     <div className="Nav">

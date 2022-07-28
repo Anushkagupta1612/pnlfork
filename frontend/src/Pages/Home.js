@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../styles/home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import video from '../vid.mp4'
 import { ethers } from "ethers";
-import {injected} from '../components/wallet/connector'
+import { injected } from '../components/wallet/connector'
 import { useWeb3React } from "@web3-react/core"
 
 const Home = () => {
   const { ethereum } = window;
   const { active, account, library, connector, activate, deactivate } = useWeb3React()
 
-  async function connect() {
+  async function connect () {
     try {
-      await activate(injected)
-      localStorage.setItem('isWalletConnected', true)
-    } catch (ex) {
-      console.log(ex)
+      await activate( injected )
+      localStorage.setItem( 'isWalletConnected', true )
+    } catch ( ex ) {
+      console.log( ex )
     }
   }
 
@@ -24,27 +24,27 @@ const Home = () => {
     <div className="Nav">
       <Navbar />
       <div className='d-flex'>
-      <div>
-          <img src="./logo.PNG" className="logo"/>
-      </div>
-      <div>
-      <h1 className="head1">Play & Earn.</h1>
-      <div className="d-flex flex-row justify-center home">
-        <div className="liendiv">
-          <hr className="line" />
+        <div>
+          <img src="./logo.PNG" className="logo" />
         </div>
-        <h1 className="head2"> Certainly.</h1>
-      </div>
-      <p className="para">
-        Are you the crazy cricket fan who can't afford to miss a single IPL match? You have the uncanny ability to memorise every single stats of players and predit who's gonna do well! But, alas there is no monetary incentive 😭. Don't worry we are here just for you guys! Monetise your cricketing knowledge and get exclusive rewards from us! Start trading player nfts once the tourney begins and book profits and notch up your score! Get the taste of the unique combo of cricket and nft served to entertain you and also, help you earn and incentive your cricketing knowledge!
-      </p>
-      </div>
+        <div>
+          <div className="head1">Play & Earn.</div>
+          <div className="d-flex flex-row justify-center home">
+            <div className="liendiv">
+              <hr className="line" />
+            </div>
+            <h1 className="head2"> Certainly.</h1>
+          </div>
+          <p className="para">
+            Are you the crazy cricket fan who can't afford to miss a single IPL match? You have the uncanny ability to memorise every single stats of players and predit who's gonna do well! But, alas there is no monetary incentive 😭. Don't worry we are here just for you guys! Monetise your cricketing knowledge and get exclusive rewards from us! Start trading player nfts once the tourney begins and book profits and notch up your score! Get the taste of the unique combo of cricket and nft served to entertain you and also, help you earn and incentive your cricketing knowledge!
+          </p>
+        </div>
       </div>
       <div className="button-pos">
         <a href='#faq'>
-        <button className="learn-button">LEARN MORE</button>
+          <button className="learn-button">LEARN MORE</button>
         </a>
-        {!account && (<button className="wallet" onClick={()=> connect()}>CONNECT WALLET</button>)}
+        { !account && ( <button className="wallet" onClick={ () => connect() }>CONNECT WALLET</button> ) }
       </div>
       <div class="wrapper mt-5 pb-5">
         <marquee behavior="alternate">
@@ -58,7 +58,7 @@ const Home = () => {
           </span>
         </marquee>
       </div>
-      <h1 className="text-white mb-3 ml-5">How it works</h1>
+      <h1 className="text-white mb-3 ml-5 howItWorks">How it works</h1>
       <div className="working pb-5">
         <p className="working-para mr-5">
           Radio signals transmitted from a controller device control the actions
@@ -68,7 +68,7 @@ const Home = () => {
           and television.
         </p>
         <div className="text-center">
-          {!account && (<button onClick={()=> connect()} className="working-button mr-5">Start Earning</button>)}
+          { !account && ( <button onClick={ () => connect() } className="working-button mr-5">Start Earning</button> ) }
         </div>
       </div>
       <marquee behavior="alternate">
@@ -117,8 +117,8 @@ const Home = () => {
       </marquee>
 
       <div className="d-flex">
-        {/* <img src="https://www.canva.com/design/DAFHDlOsAFU/zob3X4tP-fEFtZBdTCBmzg/edit?utm_content=DAFHDlOsAFU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" className="img2" /> */}
-        <video src={video} width="600" height="500" controls className="ml-4">
+        {/* <img src="https://www.canva.com/design/DAFHDlOsAFU/zob3X4tP-fEFtZBdTCBmzg/edit?utm_content=DAFHDlOsAFU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" className="img2" /> */ }
+        <video src={ video } width="600" height="500" controls className="ml-4">
         </video>
         <div className="ml-5">
           <h1 class="head2 mt-5">Unlock a world full of possibilities.</h1>
@@ -130,7 +130,7 @@ const Home = () => {
 
       <div id="faq" className="faqfather mt-5 ml-5">
         <div className="faqchild1">
-          <h1 className="text-white">What the FAQ?</h1>
+          <h1 className="FAQheading" >What the FAQ?</h1>
           <p className="para1 mt-2">
             Radio signals transmitted from a controller device control the
             actions of a remote device. In radio communication, used in radio
@@ -138,7 +138,7 @@ const Home = () => {
             control the actions of a remote device. In radio communication, used
             in radio and television.
           </p>
-          {!account && (<button className="learn-button" onClick={()=> connect()}>CONNECT WALLET</button>)}
+          { !account && ( <button className="learn-button" onClick={ () => connect() }>CONNECT WALLET</button> ) }
         </div>
         <div className="faqchild2">
           <div id="accordion" class="myaccordion">
