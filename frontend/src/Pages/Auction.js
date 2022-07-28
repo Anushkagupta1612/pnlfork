@@ -15,41 +15,41 @@ const contractAddress = "0x77086505161c2eee97F07F0f49c5A5AD04aBe464";
 
 const Auction = () => {
   const { active, account, library, connector, activate, deactivate } = useWeb3React()
-  const [showPlayer, setshowPlayer] = useState(false);
-  const [showButtons, setshowButtons] = useState(false);
-  const [placeBid, setplaceBid] = useState(false);
-  const [bidAmount, setbidAmount] = useState(0);
+  const [ showPlayer, setshowPlayer ] = useState( false );
+  const [ showButtons, setshowButtons ] = useState( false );
+  const [ placeBid, setplaceBid ] = useState( false );
+  const [ bidAmount, setbidAmount ] = useState( 0 );
 
-  const [data, setData] = useState([]);
+  const [ data, setData ] = useState( [] );
 
-  const [team, setTeam] = useState([]);
-  const addr = ethers.utils.getAddress(account);
+  const [ team, setTeam ] = useState( [] );
+  const addr = ethers.utils.getAddress( account );
 
-  const [playerId, setPlayerId] = useState(0);
-  const [sellVal, setsellVal] = useState(0);
-  const [playerid, setplayerid] = useState(0);
+  const [ playerId, setPlayerId ] = useState( 0 );
+  const [ sellVal, setsellVal ] = useState( 0 );
+  const [ playerid, setplayerid ] = useState( 0 );
 
   const { ethereum } = window;
 
-  const teamNameHandler = (e) => {
-    setTeam(iplData[e]);
-    setshowPlayer(true);
+  const teamNameHandler = ( e ) => {
+    setTeam( iplData[ e ] );
+    setshowPlayer( true );
   };
 
-  const playerNameHandler = (e) => {
+  const playerNameHandler = ( e ) => {
     // fetch from backend the value of bidAmount
     // if(bidAmount>0){
     //   setplaceBid(true)
     // }
-    setshowButtons(true);
-    setPlayerId(PlayerIdData[e]);
-    getData1(PlayerIdData[e]);
+    setshowButtons( true );
+    setPlayerId( PlayerIdData[ e ] );
+    getData1( PlayerIdData[ e ] );
   };
 
-  const placeBidHandler = async() => {
-    if (typeof ethereum !== "undefined") {
-      console.log("MetaMask is installed!");
-      const provider = new ethers.providers.Web3Provider(ethereum);
+  const placeBidHandler = async () => {
+    if ( typeof ethereum !== "undefined" ) {
+      console.log( "MetaMask is installed!" );
+      const provider = new ethers.providers.Web3Provider( ethereum );
       const tempSigner = provider.getSigner();
       const contract = new ethers.Contract(
         contractAddress,
@@ -57,14 +57,14 @@ const Auction = () => {
         tempSigner
       );
       const newbidAmount = bidAmount;
-      const transaction = await contract.make_bid({
-        value: ethers.utils.parseEther((newbidAmount).toString())
-      });
+      const transaction = await contract.make_bid( {
+        value: ethers.utils.parseEther( ( newbidAmount ).toString() )
+      } );
       await transaction.wait()
-      setplaceBid(true);
+      setplaceBid( true );
       placebid();
     } else {
-      console.log("Metamask not found!");
+      console.log( "Metamask not found!" );
     }
   };
 
@@ -85,69 +85,69 @@ const Auction = () => {
   //   })
   // }
 
-  async function placebid() {
-    await fetch(`http://localhost:3005/auction/${addr}/${playerId}`, {
+  async function placebid () {
+    await fetch( `http://localhost:3005/auction/${ addr }/${ playerId }`, {
       method: "POST",
       headers: {
         'Accept': "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      body: JSON.stringify( {
         address: addr,
         playerId: playerId,
         bid: bidAmount,
-      }),
-    }).then((res) => {
-      res.json().then((resp) => {
-        console.log("resp", resp);
-      });
-    });
+      } ),
+    } ).then( ( res ) => {
+      res.json().then( ( resp ) => {
+        console.log( "resp", resp );
+      } );
+    } );
   }
 
-  async function getPlayer() {
-    await fetch(`http://localhost:3005/auction/${addr}`)
-      .then((res) => {
-        res.json().then((data1) => {
-          setplaceBid(data1[0]);
-          setbidAmount(data1[1]);
-          setplayerid(data1[2]);
-        });
-      })
-      .catch((e) => console.log(e.message));
+  async function getPlayer () {
+    await fetch( `http://localhost:3005/auction/${ addr }` )
+      .then( ( res ) => {
+        res.json().then( ( data1 ) => {
+          setplaceBid( data1[ 0 ] );
+          setbidAmount( data1[ 1 ] );
+          setplayerid( data1[ 2 ] );
+        } );
+      } )
+      .catch( ( e ) => console.log( e.message ) );
   }
 
-  async function getData1(playerId) {
-    await fetch(`http://localhost:3005/auction/${addr}/${playerId}`)
-      .then((res) => {
-        res.json().then((data1) => {
-          setData(data1);
-        });
-      })
-      .catch((e) => console.log(e.message));
+  async function getData1 ( playerId ) {
+    await fetch( `http://localhost:3005/auction/${ addr }/${ playerId }` )
+      .then( ( res ) => {
+        res.json().then( ( data1 ) => {
+          setData( data1 );
+        } );
+      } )
+      .catch( ( e ) => console.log( e.message ) );
   }
 
   const updateSellAmt = async () => {
-    await fetch(`http://localhost:3005/auction/${addr}/${playerId}`, {
+    await fetch( `http://localhost:3005/auction/${ addr }/${ playerId }`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      body: JSON.stringify( {
         bid: sellVal,
-      }),
-    }).then((res) => {
-      res.json().then((resp) => {
-        setbidAmount(sellVal);
-        setsellVal(0);
-      });
-    });
+      } ),
+    } ).then( ( res ) => {
+      res.json().then( ( resp ) => {
+        setbidAmount( sellVal );
+        setsellVal( 0 );
+      } );
+    } );
   };
 
   const saveChange = async () => {
-    if (typeof ethereum !== "undefined") {
-      console.log("MetaMask is installed!");
-      const provider = new ethers.providers.Web3Provider(ethereum);
+    if ( typeof ethereum !== "undefined" ) {
+      console.log( "MetaMask is installed!" );
+      const provider = new ethers.providers.Web3Provider( ethereum );
       const tempSigner = provider.getSigner();
       const contract = new ethers.Contract(
         contractAddress,
@@ -155,20 +155,20 @@ const Auction = () => {
         tempSigner
       );
       const newbidAmount = sellVal;
-      const transaction = await contract.make_bid({
-        value: ethers.utils.parseEther((newbidAmount - bidAmount).toString())
-      });
+      const transaction = await contract.make_bid( {
+        value: ethers.utils.parseEther( ( newbidAmount - bidAmount ).toString() )
+      } );
       await transaction.wait()
       await updateSellAmt();
     } else {
-      console.log("Metamask not found!");
+      console.log( "Metamask not found!" );
     }
   };
 
-  useEffect(() => {
+  useEffect( () => {
     getPlayer()
-  }, [])
-  
+  }, [] )
+
 
   return (
     <div className="Nav">
@@ -185,7 +185,7 @@ const Auction = () => {
                 aria-expanded="true"
                 aria-controls="collapseOne"
               >
-                SELECT YOUR TEAM!
+                <div className="selectTeamDiv">SELECT YOUR TEAM!</div>
               </button>
             </h2>
           </div>
@@ -198,24 +198,24 @@ const Auction = () => {
           >
             <button
               className="teamName mt-3"
-              onClick={() => teamNameHandler("CSK")}
-            >      
+              onClick={ () => teamNameHandler( "CSK" ) }
+            >
               CSK
             </button>
-            <button className="teamName" onClick={() => teamNameHandler("MI")}>    
+            <button className="teamName" onClick={ () => teamNameHandler( "MI" ) }>
               MI
             </button>
-            <button className="teamName" onClick={() => teamNameHandler("GT")}>
+            <button className="teamName" onClick={ () => teamNameHandler( "GT" ) }>
               GT
             </button>
-            <button className="teamName" onClick={() => teamNameHandler("RR")}>
+            <button className="teamName" onClick={ () => teamNameHandler( "RR" ) }>
               RR
             </button>
           </div>
         </div>
       </div>
 
-      {!showPlayer ? (
+      { !showPlayer ? (
         <></>
       ) : (
         <div className="Details">
@@ -230,7 +230,7 @@ const Auction = () => {
                   aria-expanded="true"
                   aria-controls="collapseOne"
                 >
-                  SELECT YOUR PLAYER!
+                  <div className="selectTeamDiv"> SELECT YOUR PLAYER! </div>
                 </button>
               </h2>
             </div>
@@ -241,46 +241,46 @@ const Auction = () => {
               aria-labelledby="headingOne"
               data-parent="#accordionExample1"
             >
-              {team.map((item, val) => (
+              { team.map( ( item, val ) => (
                 <button
                   className="teamName"
-                  onClick={() => playerNameHandler(item)}
+                  onClick={ () => playerNameHandler( item ) }
                 >
-                  {item}
+                  { item }
                 </button>
-              ))}
+              ) ) }
             </div>
           </div>
         </div>
-      )}
+      ) }
 
-      {!showButtons ? (
+      { !showButtons ? (
         <></>
       ) : (
         <div className="Panel">
           <div className="Bid">
             <button className="tradingButton">
               Highest Bid -
-              {data.length != 0 ? (
-                data[data.length - 1].toFixed(4)
+              { data.length != 0 ? (
+                data[ data.length - 1 ].toFixed( 4 )
               ) : (
                 <div class="spinner-border text-warning" role="status"></div>
-              )}
+              ) }
             </button>
             <button className="tradingButton">
               Lowest Bid -
-              {data.length != 0 ? (
-                data[0].toFixed(4)
+              { data.length != 0 ? (
+                data[ 0 ].toFixed( 4 )
               ) : (
                 <div class="spinner-border text-warning" role="status"></div>
-              )}
+              ) }
             </button>
           </div>
 
           <div className="Bid">
-            {/* <button className='tradingButton'>Base price</button> */}
-            {/* <button className='tradingButton'>Place your</button> */}
-            {!placeBid && (
+            {/* <button className='tradingButton'>Base price</button> */ }
+            {/* <button className='tradingButton'>Place your</button> */ }
+            { !placeBid && (
               <div class="input-block">
                 <input
                   type="text"
@@ -288,27 +288,27 @@ const Auction = () => {
                   id="input-text"
                   required
                   spellcheck="false"
-                  value={bidAmount}
-                  onChange={(e) => setbidAmount(e.target.value)}
+                  value={ bidAmount }
+                  onChange={ ( e ) => setbidAmount( e.target.value ) }
                 />
                 <span class="placeholder">Enter your bid</span>
               </div>
-            )}
+            ) }
           </div>
-          {!placeBid && (
-            <button onClick={() => placeBidHandler()} className="PlaceBid">
+          { !placeBid && (
+            <button onClick={ () => placeBidHandler() } className="PlaceBid">
               Place Bid
             </button>
-          )}
+          ) }
 
-          {!placeBid ? (
+          { !placeBid ? (
             <></>
           ) : (
             <div className="Bid">
               <button className="tradingButton">
-                Your bid - {bidAmount} ({CategoryData[playerid][0]})
+                Your bid - { bidAmount } ({ CategoryData[ playerid ][ 0 ] })
               </button>
-              {playerid == playerId && (
+              { playerid == playerId && (
                 <button
                   type="button"
                   className="tradingButton"
@@ -317,7 +317,7 @@ const Auction = () => {
                 >
                   Update Bid
                 </button>
-              )}
+              ) }
 
               <div
                 class="modal fade"
@@ -350,8 +350,8 @@ const Auction = () => {
                           id="input-text"
                           required
                           spellcheck="false"
-                          value={sellVal}
-                          onChange={(e) => setsellVal(e.target.value)}
+                          value={ sellVal }
+                          onChange={ ( e ) => setsellVal( e.target.value ) }
                         />
                         <span class="placeholder">Enter Price</span>
                       </div>
@@ -362,14 +362,14 @@ const Auction = () => {
                         type="button"
                         class="btn btn-secondary"
                         data-dismiss="modal"
-                        onClick={() => setsellVal(0)}
+                        onClick={ () => setsellVal( 0 ) }
                       >
                         Close
                       </button>
                       <button
                         type="button"
                         class="btn btn-primary"
-                        onClick={() => saveChange()}
+                        onClick={ () => saveChange() }
                       >
                         Save changes
                       </button>
@@ -378,9 +378,9 @@ const Auction = () => {
                 </div>
               </div>
             </div>
-          )}
+          ) }
         </div>
-      )}
+      ) }
 
       <Footer />
     </div>
