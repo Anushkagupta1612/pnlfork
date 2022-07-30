@@ -15,6 +15,8 @@ contract auction  {
         payable(to).transfer(bidders[to]);
         bidders[to] = 0;
     }
+
+    // nb@paxo.finance-
 }
 
 

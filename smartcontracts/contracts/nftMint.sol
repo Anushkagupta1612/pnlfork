@@ -9,7 +9,7 @@ import "./auction.sol";
 
 contract pnl is ERC721URIStorage {
     using Counters for Counters.Counter;
-    
+    // increments value by 1
     Counters.Counter private _tokenIds;
 
     constructor() ERC721("ProNFTLeague", "PNL") {}
