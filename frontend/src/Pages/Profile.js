@@ -131,6 +131,23 @@ const Profile = () => {
     return file;
   }
 
+  const updateSell = async ( amount ) => {
+    await fetch( `http://localhost:3005/profile/${ data[ 0 ].playerId }`, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify( {
+        playeerid: amount
+      } ),
+    } ).then( ( res ) => {
+      res.json().then( ( resp ) => {
+        console.log( resp );
+      } );
+    } );
+  };
+
   const claimNft = async () => {
     const client = create( 'https://ipfs.infura.io:5001/api/v0' );
     const imageurl = CategoryData[ data[ 0 ].playerId ][ 1 ];
@@ -152,27 +169,6 @@ const Profile = () => {
         const tempMetadata = MetaData[ data[ 0 ].playerId ]
         tempMetadata.image = stringurl;
         console.log( tempMetadata );
-        // const metadata =
-        // {
-        //   "description": "These are awesome NFTs created by PNL",
-        //   "external_url": "",
-        //   "image": stringurl,
-        //   "name": "DogsAreCute",
-        //   "attributes": [
-        //     {
-        //       "trait_type": "Animal",
-        //       "value": "Dog"
-        //     },
-        //     {
-        //       "trait_type": "Looks",
-        //       "value": "Cute"
-        //     },
-        //     {
-        //       "trait_type": "Will u pet it?",
-        //       "value": "yes"
-        //     },
-        //   ],
-        // }
 
         const metadata_string = JSON.stringify( tempMetadata );
         const textipfs = await client.add( metadata_string );
@@ -180,6 +176,7 @@ const Profile = () => {
         console.log( metadataurl );
 
         const tokenID = await contract.mintToken( metadataurl );
+        await updateSell( tokenID )
         // 2 5 67 100 56 
       }
       else {
@@ -191,7 +188,7 @@ const Profile = () => {
     }
   };
 
-  // console.log( data[ 0 ].playerId )
+  console.log( data[ 0 ].playerId )
 
   return (
     <div className="Nav">
