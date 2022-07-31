@@ -48,13 +48,13 @@ router.get( '/:id', async function ( req, res ) {
 } )
 
 // Patch request to add tokenIds 
-router.patch( "/:id/", async function ( req, res ) {
+router.patch( "/:id1/:id/", async function ( req, res ) {
     try {
-        const playerid = req.params.id
+        const playerid = req.params.id1
         const playerId11 = req.body
         const playerId1 = playerId11.playeerid
-        let player = await Player.findOneAndUpdate( { playerId: playerid }, { $push: { tokenIds: playerId1 } } );
-        res.send( player );
+        const player = await Player.findOneAndUpdate( { playerId: playerid }, { $push: { tokenIds: playerId1 } } );
+        res.send( player);
     } catch ( error ) {
         console.log( error.message );
         res.status( 500 ).json( "Some error occured!" );
