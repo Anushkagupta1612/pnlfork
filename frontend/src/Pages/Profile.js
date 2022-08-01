@@ -74,7 +74,7 @@ const Profile = () => {
     await fetch(`http://localhost:3005/profile/${addr}`, {
       method: "PATCH",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -172,8 +172,16 @@ const Profile = () => {
         const metadataurl = `https://ipfs.infura.io/ipfs/${textipfs.path}`;
         console.log(metadataurl);
 
-        const tokenID = await contract.mintToken(metadataurl);
-        await updateSell(tokenID);
+        const transaction = await contract.mintToken(metadataurl);
+        const trans = await transaction.wait(5)  //.then(console.log)
+        console.log(trans)
+        const {events} = trans;
+        const x = events[0];
+        const {args} = x 
+        const num = args[2]._hex
+        const id = Number(num);
+        console.log(id);
+        await updateSell(id);
         // 2 5 67 100 56
       } else {
         console.log("Metamask not found");

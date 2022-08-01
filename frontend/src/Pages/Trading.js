@@ -8,7 +8,6 @@ import { PlayerIdData } from "../playerToid";
 import { iplData } from '../iplData'
 import { CategoryData } from "../data";
 import { useWeb3React } from "@web3-react/core"
-import { injected } from '../components/wallet/connector'
 
 const Trading = () => {
   const { active, account, library, connector, activate, deactivate } = useWeb3React()
@@ -20,6 +19,8 @@ const Trading = () => {
   const [ team, setTeam ] = useState( [] );
   const [ playerId, setPlayerId ] = useState( 0 );
   const [ sellerAddress, setsellerAddress ] = useState( 0 )
+  const [ sellamt, setsellamt ] = useState( 0 )
+  const [ tokenid, settokenid ] = useState( 0 )
   const addr = ethers.utils.getAddress( account );
 
   const teamNameHandler = ( e ) => {
@@ -54,10 +55,12 @@ const Trading = () => {
     await fetch( `http://localhost:3005/trading/${ playerId }` )
       .then( ( res ) => {
         res.json().then( ( data1 ) => {
-          if ( data1[ 0 ] === false ) {
+          if ( data1[0][0] === false ) {
             setshowBut( false );
           } else {
-            setsellerAddress( data1[ 2 ] )
+            setsellerAddress( data1[0][ 2 ] )
+            setsellamt( data1[0][ 1 ] )
+            settokenid( data1[1] )
             setshowBut( true );
           }
           return;
@@ -86,7 +89,8 @@ const Trading = () => {
       } );
     } );
   };
-
+   
+  console.log(sellerAddress,sellamt,tokenid)
 
   return (
     <div className="Nav">

@@ -32,11 +32,25 @@ router.get('/:id/:id1', async function (req, res) {
     }
 })
 
+// GET request to get the token Ids
+// router.get('/:id', async function (req, res) {
+//     try {
+//         const _id1 = req.params.id
+//         const tradingData = await Player.find({playerId: _id1})
+//         res.send(tradingData)
+//     } catch (error) {
+//         console.log(error.message)
+//         res.status(500).json("Some error occured!")      
+//     }
+// })
+
 // GET request to get the address of the smallest > 0 sellAmount
 router.get('/:id/', async function (req, res) {
     try {
         const playerid = req.params.id
         const tradingData = await User.find({playerId: playerid})
+        const tokenIdData = await Player.find({playerId: playerid})
+        const tokenId = tokenIdData[0].tokenIds
         let sellAmounts = []
         tradingData.map((item, index) => {
             if (item.sellAmount > 0) {
@@ -44,12 +58,12 @@ router.get('/:id/', async function (req, res) {
             }
         })
         if (sellAmounts.length == 0) {
-            res.send([false,null])
+            res.send([[false,null],null])
         }
         sellAmounts.sort(function (a, b) {
             return parseInt(a[1]) - parseInt(b[1]);
         })
-        res.send(sellAmounts[0])
+        res.send([sellAmounts[0],tokenId[0] ])
     } catch (error) {
         console.log(error.message)
         res.status(500).json("Some error occured!")      
